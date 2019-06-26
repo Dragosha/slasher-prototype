@@ -1,0 +1,33 @@
+[project]
+title = Slasher-prototype
+dependencies = https://github.com/britzl/defold-input/archive/master.zip,https://github.com/rgrams/rendercam/archive/v1.0.1.zip,https://github.com/britzl/ludobits/archive/6.6.0.zip
+
+[bootstrap]
+main_collection = /main/scene.collectionc
+render = /rendercam_/rendercam_.renderc
+
+[input]
+game_binding = /in/bindings/all.input_bindingc
+use_accelerometer = 0
+
+[display]
+width = 1600
+height = 900
+
+[script]
+shared_state = 1
+
+[windows]
+app_icon = /assets/app_icons/appicon.ico
+
+[osx]
+app_icon = /assets/app_icons/appicon.icns
+
+[android]
+package = com.dragosha.slasher
+
+[physics]
+type = 2D
+gravity_y = 0.0
+debug = 0
+

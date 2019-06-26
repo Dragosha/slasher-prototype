@@ -1,0 +1,64 @@
+local param=require "main.param"
+local rpg=require "main.scripts.rpg"
+local TRIGGER_RESPONSE = hash("trigger_response")
+local COLLISION_RESPONSE = hash("collision_response")
+local CONTACT_POINT_RESPONSE = hash("contact_point_response")
+local HERO= hash("hero")
+
+go.property("fx", msg.url())
+go.property("speed", 200)
+go.property("type",hash(""))
+go.property("damage",1)
+go.property("distance", 1500)
+
+
+local function destroy(self)
+
+end
+
+
+function init(self)
+	self.initial_position = go.get_position()
+	if self.fx then	particlefx.play(self.fx) end
+
+	self.vrotate = vmath.rotate(go.get_rotation(), vmath.vector3(0, 1, 0))
+	self.pos=go.get_position()
+end
+
+function final(self)
+	if self.fx then
+		particlefx.stop(self.fx) 
+		msg.post(self.fx, 'disable')
+	end
+end
+
+function update(self, dt)
+	local pos = go.get_position()
+	
+	pos = pos + self.vrotate * self.speed * dt
+	pos.z=self.pos.z+pos.y*param.kZ
+	go.set_position(pos)
+
+	local distance_traveled = vmath.length(pos - self.initial_position)
+	if distance_traveled > self.distance then
+		go.delete()
+	end
+
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == COLLISION_RESPONSE then
+		if message.other_group==param.SOLID then
+			go.delete()
+
+		elseif message.other_group==param.HERO then
+			go.delete()
+			msg.post(message.other_id, param.DODAMAGE, {id=go.get_id(), value=self.damage, type=self.type})
+
+		elseif message.other_group==param.DEFAULT then
+			go.delete()
+
+		end
+	end
+end
+

@@ -1,0 +1,149 @@
+images {
+  image: "/assets/images/barrel.png"
+}
+images {
+  image: "/assets/images/bgstone2.png"
+}
+images {
+  image: "/assets/images/bgstone3.png"
+}
+images {
+  image: "/assets/images/bgwooden1.png"
+}
+images {
+  image: "/assets/images/stoneblock.png"
+}
+images {
+  image: "/assets/images/stoneblock2.png"
+}
+images {
+  image: "/assets/images/stoneblock3.png"
+}
+images {
+  image: "/assets/images/stoneblock4.png"
+}
+images {
+  image: "/assets/images/stoneblock5.png"
+}
+images {
+  image: "/assets/images/stoneblock6.png"
+}
+images {
+  image: "/assets/images/stuff1.png"
+}
+images {
+  image: "/assets/images/lightaura.png"
+}
+images {
+  image: "/assets/images/stuff2.png"
+}
+images {
+  image: "/assets/images/bgstone1b.png"
+}
+images {
+  image: "/assets/images/bgwooden1b.png"
+}
+images {
+  image: "/assets/images/house1.png"
+}
+images {
+  image: "/assets/images/stuff3.png"
+}
+images {
+  image: "/assets/images/stuff4.png"
+}
+images {
+  image: "/assets/images/chandelier.png"
+}
+images {
+  image: "/assets/images/chandelier-chain.png"
+}
+images {
+  image: "/assets/images/fx/fx1.png"
+}
+images {
+  image: "/assets/images/fx/fireball2.png"
+}
+images {
+  image: "/assets/images/fx/dust1.png"
+}
+images {
+  image: "/assets/images/UI/circlebutton.png"
+}
+animations {
+  id: "fire"
+  images {
+    image: "/assets/images/fire/fire1.png"
+  }
+  images {
+    image: "/assets/images/fire/fire2.png"
+  }
+  images {
+    image: "/assets/images/fire/fire3.png"
+  }
+  images {
+    image: "/assets/images/fire/fire4.png"
+  }
+  images {
+    image: "/assets/images/fire/fire5.png"
+  }
+  images {
+    image: "/assets/images/fire/fire6.png"
+  }
+  images {
+    image: "/assets/images/fire/fire7.png"
+  }
+  images {
+    image: "/assets/images/fire/fire8.png"
+  }
+  images {
+    image: "/assets/images/fire/fire9.png"
+  }
+  images {
+    image: "/assets/images/fire/fire10.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 14
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "fire2"
+  images {
+    image: "/assets/images/fire/fire5.png"
+  }
+  images {
+    image: "/assets/images/fire/fire6.png"
+  }
+  images {
+    image: "/assets/images/fire/fire7.png"
+  }
+  images {
+    image: "/assets/images/fire/fire8.png"
+  }
+  images {
+    image: "/assets/images/fire/fire9.png"
+  }
+  images {
+    image: "/assets/images/fire/fire10.png"
+  }
+  images {
+    image: "/assets/images/fire/fire1.png"
+  }
+  images {
+    image: "/assets/images/fire/fire2.png"
+  }
+  images {
+    image: "/assets/images/fire/fire3.png"
+  }
+  images {
+    image: "/assets/images/fire/fire4.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 13
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+margin: 2
+extrude_borders: 0
+inner_padding: 0

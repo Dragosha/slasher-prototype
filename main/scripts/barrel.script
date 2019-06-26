@@ -1,0 +1,20 @@
+local param=require "main.param"
+function init(self)
+	self.pos=go.get_position()
+end
+
+function final(self)
+	-- Add finalization code here
+	-- Remove this function if not needed
+end
+
+local CONTACT_POINT_RESPONSE = hash("contact_point_response")
+function on_message(self, message_id, message, sender)
+	if message_id == CONTACT_POINT_RESPONSE then
+		--print(correction, message.normal, message.distance)
+		local pos=go.get_position()
+		pos.z=self.pos.z+pos.y*param.kZ
+		go.set_position(pos)
+
+	end
+end

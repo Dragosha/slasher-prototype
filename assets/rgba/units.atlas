@@ -1,0 +1,33 @@
+images {
+  image: "/assets/units/skeleton/images/skeletonbody.png"
+}
+images {
+  image: "/assets/units/skeleton/images/skeletonhead.png"
+}
+images {
+  image: "/assets/units/skeleton/images/skeletonleftarm.png"
+}
+images {
+  image: "/assets/units/skeleton/images/skeletonleftfoot.png"
+}
+images {
+  image: "/assets/units/skeleton/images/skeletonrightarm.png"
+}
+images {
+  image: "/assets/units/skeleton/images/skeletonrightfoot.png"
+}
+images {
+  image: "/assets/units/skeleton/images/swoosh.png"
+}
+images {
+  image: "/assets/units/skeleton/images/skeletonbody2.png"
+}
+images {
+  image: "/assets/units/skeleton/images/skeletonhead2.png"
+}
+images {
+  image: "/assets/units/skeleton/images/monster_shadow.png"
+}
+margin: 2
+extrude_borders: 0
+inner_padding: 0

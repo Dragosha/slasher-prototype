@@ -1,0 +1,14 @@
+local cam=require "rendercam.rendercam"
+local param=require "main.param"
+local scene=require "main.scene"
+local broadcast = require "ludobits.m.broadcast"
+
+function init(self)
+	--msg.post(".", "acquire_input_focus")
+end
+
+function on_message(self, message_id, message, sender)
+
+end
+
+

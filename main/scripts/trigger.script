@@ -1,0 +1,35 @@
+local param=require "main.param"
+local broadcast = require "ludobits.m.broadcast"
+go.property("value", 0)
+
+local TRIGGER_RESPONSE = hash("trigger_response")
+local HERO= hash("hero")
+
+function init(self)
+	msg.post('#sprite', 'disable')
+	msg.post('#label', 'disable')
+	local pos=go.get_position(v)
+	pos.z=pos.z+(pos.y/param.kY)*param.kZ
+	--msg.post("#pressb", "updatenode", { id = "box", position = pos})
+end
+
+function final(self)
+	
+end
+
+function on_message(self, message_id, message, sender)
+	
+	if message_id==TRIGGER_RESPONSE then 
+		if message.other_group==HERO then
+			 if message.enter then
+			 	msg.post('#sprite', 'enable')
+			 	msg.post('#label', 'enable')
+			 else
+			 	msg.post('#sprite', 'disable')
+			 	msg.post('#label', 'disable')
+			 end
+		end
+	elseif message_id==param.GOTO then
+		broadcast.send(param.GOTO,{value=self.value})
+	end
+end

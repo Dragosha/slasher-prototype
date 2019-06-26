@@ -1,0 +1,9 @@
+local routine=require "main.scripts.routine"
+function init(self)
+	table.insert( routine.waypoints, 1, {id=go.get_id(), pos=go.get_position()} )
+	msg.post("#sprite", "disable")
+end
+
+function final(self)
+
+end

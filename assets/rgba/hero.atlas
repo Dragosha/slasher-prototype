@@ -1,0 +1,60 @@
+images {
+  image: "/assets/units/hero/images/armor1.png"
+}
+images {
+  image: "/assets/units/hero/images/frontarm.png"
+}
+images {
+  image: "/assets/units/hero/images/fronthand.png"
+}
+images {
+  image: "/assets/units/hero/images/fronthand2.png"
+}
+images {
+  image: "/assets/units/hero/images/frontthigh.png"
+}
+images {
+  image: "/assets/units/hero/images/head2.png"
+}
+images {
+  image: "/assets/units/hero/images/reararm.png"
+}
+images {
+  image: "/assets/units/hero/images/rearhand.png"
+}
+images {
+  image: "/assets/units/hero/images/rearthigh.png"
+}
+images {
+  image: "/assets/units/hero/images/shadow copy 2.png"
+}
+images {
+  image: "/assets/units/hero/images/sword1.png"
+}
+images {
+  image: "/assets/units/hero/images/sword1_.png"
+}
+images {
+  image: "/assets/units/hero/images/curl.png"
+}
+images {
+  image: "/assets/units/hero/images/frontboots2.png"
+}
+images {
+  image: "/assets/units/hero/images/rearboots2.png"
+}
+images {
+  image: "/assets/units/hero/images/rear_hand_shield.png"
+}
+images {
+  image: "/assets/units/hero/images/rear_shield.png"
+}
+images {
+  image: "/assets/units/hero/images/rear_hand_shield2.png"
+}
+images {
+  image: "/assets/units/hero/images/wind-slap.png"
+}
+margin: 2
+extrude_borders: 0
+inner_padding: 0
