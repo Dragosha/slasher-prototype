@@ -8,12 +8,15 @@ LUA. Defold engine.
 ## HTML5 demo
 Try here: [demo](https://dragosha.github.io/slasher-prototype/)
 
+## Code
 **Used dependencies:**
 * Defold-input (by britzl)
 * Rendercam (by rgrams)
 * ludobits (by britzl)
 
-
+## Level design
+![](docs/level.jpg)
+tip: use ```Ctrl(cmd)+LeftMouse``` to rotate camera in the editor.
 
 ## Art and animations license:
 
