@@ -5,7 +5,10 @@ Game prototype. 2.5D perspective view. Levels loader, the hero controller, monst
 Gamepad and keyboard binding supported.
 LUA. Defold engine.
 
-Used dependencies:
+## HTML5 demo
+Try here: [demo](https://dragosha.github.io/slasher-prototype/)
+
+**Used dependencies:**
 * Defold-input (by britzl)
 * Rendercam (by rgrams)
 * ludobits (by britzl)
