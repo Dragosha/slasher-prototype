@@ -70,6 +70,33 @@ images {
 images {
   image: "/assets/images/UI/circlebutton.png"
 }
+images {
+  image: "/assets/images/bg1.png"
+}
+images {
+  image: "/assets/images/bg2.png"
+}
+images {
+  image: "/assets/images/stoneblockA.png"
+}
+images {
+  image: "/assets/images/stoneblockB.png"
+}
+images {
+  image: "/assets/images/stuff3_A.png"
+}
+images {
+  image: "/assets/images/stuff3_B.png"
+}
+images {
+  image: "/assets/images/stoneblock6_A.png"
+}
+images {
+  image: "/assets/images/stoneblock6_B.png"
+}
+images {
+  image: "/assets/images/target.png"
+}
 animations {
   id: "fire"
   images {

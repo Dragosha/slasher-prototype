@@ -86,13 +86,16 @@ function init(self)
 	mapper.bind(mapper.MOUSE_BUTTON_1, param.CLICK, self.heroID)
 
 	msg.post("#label","disable")
+	msg.post("herospine", "disable")
 
 	broadcast.register(param.LEVELLOADED)
+	broadcast.register(param.GOTO)
 	cam.follow(go.get_id())
 end
 
 function final(self)
 	broadcast.unregister(param.LEVELLOADED)
+	broadcast.unregister(param.GOTO)
 	cam.unfollow(go.get_id())
 end
 
@@ -424,7 +427,15 @@ function on_message(self, message_id, message, sender)
 		onSpineEvent(self,message)
 	elseif message_id==param.DODAMAGE then
 		onDamageEvent(self, message)
+	elseif message_id==param.GOTO then
+		msg.post("herospine", "disable")
 	elseif message_id==param.LEVELLOADED then
+		if message.targetpos then
+			go.set_position(message.targetpos)
+		end
+		go.set("herospine#spinemodel", "tint", vmath.vector4(1, 1, 1, 0))
+		msg.post("herospine", "enable")
+		go.animate("herospine#spinemodel", "tint", go.PLAYBACK_ONCE_FORWARD, vmath.vector4(1, 1, 1, 1), go.EASING_LINEAR, .5)
 		reset(self)
 		timer.delay(.2, false, function() broadcast.send(param.TARGET_ID,{id=go.get_id()}) end)
 	end

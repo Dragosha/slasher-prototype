@@ -257,9 +257,10 @@ function init(self)
 	scene.monsters[self.ID]={id=self.ID, state=self.state}
 
 
-	if not sys.get_engine_info().is_debug then
+	--if not sys.get_engine_info().is_debug then
 		msg.post("#label","disable")
-	end
+	--end
+	
 	--broadcast.register(param.PLEASESTOP)
 end
 

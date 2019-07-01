@@ -25,6 +25,8 @@ function load_complete(self, url, result)
 
 	go.set(back, "euler.x", param.angle)
 	go.set(back, "position.z", 0)
+
+	-- Iterates all objects in collection and corrects their Z-coordinate based on Y-coordinate: pos.z=pos.z+(pos.y/param.kY)*param.kZ
 	for k, v in pairs( self.ids ) do
 		if v~=back and v~=cam and v~=colider then 
 			local pos=go.get_position(v)
@@ -36,11 +38,21 @@ function load_complete(self, url, result)
 		end
 	end
 
-	timer.delay(.2,false, function() broadcast.send(param.LEVELLOADED,{name=self.name}) end)
+	---- Getting stat position for the hero
+	local targetpos
+	if self.target==hash("") or self.target==nil then self.target=hash("/startpoint") end
+	local targetID=self.ids[self.target]
+	if targetID then
+		targetpos=go.get_position(targetID)
+		print("Hero's start point:", self.target, targetID, targetpos)
+	end
+
+	timer.delay(.1,false, function() broadcast.send(param.LEVELLOADED,{name=self.name, targetpos=targetpos}) end)
 end
 
-function load(self, name)
+function load(self, name, target)
 	self.name=name
+	self.target=target
 	collectionfactory.load(name, load_complete)
 end
 
@@ -69,7 +81,7 @@ end
 function on_message(self, message_id, message, sender)
 	if message_id==param.GOTO then
 		unload(self)
-		timer.delay(.2, false, function() load(self,"/levels#"..message.value) end) 
+		timer.delay(.2, false, function() load(self,"/levels#"..message.value, message.target) end) 
 	end
 end
 
