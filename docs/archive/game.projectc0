@@ -59,7 +59,7 @@ max_resources = 1024
 repeat_delay = 0.5
 repeat_interval = 0.2
 gamepads = /builtins/input/default.gamepadsc
-game_binding = /in/bindings/all.input_bindingc
+game_binding = /input/all.input_bindingc
 use_accelerometer = 0
 
 [sprite]
