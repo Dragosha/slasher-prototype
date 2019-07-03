@@ -65,7 +65,7 @@ function unload(self)
 end
 
 function init(self)
-	load(self,"/levels#1")
+	load(self,"/levels#3")
 
 	broadcast.register(param.GOTO)
 end

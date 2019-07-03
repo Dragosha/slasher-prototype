@@ -1,6 +1,15 @@
 images {
   image: "/assets/images/UI/hi_border.png"
 }
+images {
+  image: "/assets/images/UI/PadButton.png"
+}
+images {
+  image: "/assets/images/UI/swordicon.png"
+}
+images {
+  image: "/assets/images/UI/BUTTON_PAD.png"
+}
 margin: 0
 extrude_borders: 0
 inner_padding: 0

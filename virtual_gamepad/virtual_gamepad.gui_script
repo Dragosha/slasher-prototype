@@ -1,0 +1,142 @@
+local param=require "main.param"
+local broadcast = require "ludobits.m.broadcast"
+ 
+local function hide(node, value)
+	local color=gui.get_color(node)
+	if value then 
+		color.w=.2
+	else
+		color.w=1
+	end
+	gui.set_color(node, color)
+
+end
+
+local buttons={}
+local function registerButton(node_or_node_id, message_id)
+	local node= (type(node_or_node_id) == "string" and gui.get_node(node_or_node_id) or node_or_node_id)
+	buttons[node_or_node_id]={message_id=message_id, node=node, scale=gui.get_scale(node), color=gui.get_color(node)}
+end
+
+local function shake(node, initial_scale)
+	gui.cancel_animation(node, "scale.x")
+	gui.cancel_animation(node, "scale.y")
+	gui.set_scale(node, initial_scale)
+	local scale = gui.get_scale(node)
+	gui.set_scale(node, scale * 1.2)
+	gui.animate(node, "scale.x", scale.x, gui.EASING_OUTELASTIC, 0.8)
+	gui.animate(node, "scale.y", scale.y, gui.EASING_OUTELASTIC, 0.8, 0.05, function()
+		gui.set_scale(node, initial_scale)
+	end)
+end
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	self.analog = gui.get_node("analog")
+	self.button_b = gui.get_node("button_b")
+
+
+	registerButton("button_a",param.BUTTON_A)
+	registerButton("button_b",param.BUTTON_B)
+	registerButton("button_x",param.BUTTON_X)
+
+	self.analog_start_position = gui.get_position(self.analog)
+
+	broadcast.register(param.BUTTON_B_AVAILABLE)
+	broadcast.register(param.GOTO)
+	hide(self.button_b, true)
+end
+
+function final(self)
+	msg.post(".", "release_input_focus")
+	broadcast.unregister(param.BUTTON_B_AVAILABLE)
+	broadcast.unregister(param.GOTO)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("register") then
+		self.listener = sender
+	elseif message_id == hash("unregister") then
+		self.listener = nil
+	elseif message_id==param.GOTO then
+		hide(self.button_b, true)
+	elseif message_id == param.BUTTON_B_AVAILABLE then
+		hide(self.button_b, not message.value)
+	end
+end
+
+local function post_to_listener(self, message_id, message)
+	if self.listener then
+		msg.post(self.listener, message_id, message or {})
+	end
+end
+
+
+local function handle_touch(self, touch, touch_index)
+	if touch.pressed then
+		for __, v in pairs( buttons ) do
+			if gui.pick_node(v.node, touch.x, touch.y) then
+				post_to_listener(self, v.message_id, { pressed = true })
+				v.pressed=true
+				shake(v.node,v.scale)
+				return true
+			end
+		end
+		if gui.pick_node(self.analog, touch.x, touch.y) then
+			gui.cancel_animation(self.analog, gui.PROP_POSITION)
+			local touch_pos = vmath.vector3(touch.x, touch.y, 0)
+			self.analog_pressed = { pos = touch_pos, offset = touch_pos - self.analog_start_position, index = touch_index }
+		end
+	elseif touch.released then
+		if self.analog_pressed and self.analog_pressed.index == touch_index then
+			gui.animate(self.analog, gui.PROP_POSITION, self.analog_start_position, gui.EASING_OUTQUAD, 0.2)
+			post_to_listener(self, param.ANALOG, { x = 0, y = 0 })
+			self.analog_pressed = nil
+		else
+			for __, v in pairs( buttons ) do
+				if gui.pick_node(v.node, touch.x, touch.y) and v.pressed then
+					post_to_listener(self, v.message_id, { released = true })
+					v.pressed=nil
+					return true
+				end
+			end
+			-- Release all pressed buttons for prevent stuck of button when tap on the button and untap outside it
+			for __, v in pairs( buttons ) do
+				if v.pressed then
+					post_to_listener(self, v.message_id, { released = true })
+					v.pressed=nil
+				end
+			end
+		end
+	elseif self.analog_pressed and self.analog_pressed.index == touch_index then
+		local touch_position = vmath.vector3(touch.x, touch.y, 0)
+		local diff = self.analog_pressed.pos - touch_position
+		local dir = vmath.normalize(diff)
+		local distance = vmath.length(diff)
+		if distance > 0 then
+			local radius = 80
+			if distance > radius then
+				touch_position = self.analog_start_position - dir * radius
+				distance = radius
+			else
+				touch_position = touch_position - self.analog_pressed.offset	
+			end
+			gui.set_position(self.analog, touch_position)
+			post_to_listener(self, param.ANALOG, { x = -dir.x * distance / radius, y = -dir.y * distance / radius })
+		end
+	end
+end
+
+function on_input(self, action_id, action)
+	--local ratio_x = action.x / (action.screen_x or action.x)
+	--local ratio_y = action.y / (action.screen_y or action.y)
+	if action.touch then
+		for i,tp in pairs(action.touch) do
+			--tp.x = tp.x / ratio_x
+			--tp.y = tp.y / ratio_y
+			handle_touch(self, tp, i)
+		end
+	elseif action_id == param.CLICK then
+		handle_touch(self, action, 0)
+	end
+end

@@ -29,7 +29,7 @@ local M={
 	RIGHT=hash("right"),
 	UP=hash("up"),
 	DOWN=hash("down"),
-	CLICK=hash("click"),
+	CLICK=hash("touch"),
 	DODGE=hash("dodge"),
 	JERK=hash("jerk"),
 	DASH=hash("dash"),
@@ -48,6 +48,14 @@ local M={
 
 	DODAMAGE=hash("DODAMAGE"),
 	GOTO=hash("GOTO"),
-	LEVELLOADED=hash("LEVELLOADED")
+	LEVELLOADED=hash("LEVELLOADED"),
+
+	VirtualGamePadURL="/go#virtual_gamepad",
+	BUTTON_B=hash("BUTTON_B"),
+	BUTTON_A=hash("BUTTON_A"),
+	BUTTON_X=hash("BUTTON_X"),
+	ANALOG=hash("ANALOG"),
+
+	BUTTON_B_AVAILABLE=hash("BUTTON_B_AVAILABLE"),
 }
 return M

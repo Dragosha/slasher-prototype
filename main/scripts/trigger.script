@@ -25,9 +25,11 @@ function on_message(self, message_id, message, sender)
 			 if message.enter then
 			 	msg.post('#sprite', 'enable')
 			 	msg.post('#label', 'enable')
+			 	broadcast.send(param.BUTTON_B_AVAILABLE,{value=true})
 			 else
 			 	msg.post('#sprite', 'disable')
 			 	msg.post('#label', 'disable')
+			 	broadcast.send(param.BUTTON_B_AVAILABLE,{value=false})
 			 end
 		end
 	elseif message_id==param.GOTO then

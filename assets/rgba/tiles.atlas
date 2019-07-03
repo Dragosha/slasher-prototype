@@ -97,6 +97,9 @@ images {
 images {
   image: "/assets/images/target.png"
 }
+images {
+  image: "/assets/images/foregroundShadow.png"
+}
 animations {
   id: "fire"
   images {

@@ -91,12 +91,15 @@ function init(self)
 	broadcast.register(param.LEVELLOADED)
 	broadcast.register(param.GOTO)
 	cam.follow(go.get_id())
+
+	msg.post(param.VirtualGamePadURL, "register")
 end
 
 function final(self)
 	broadcast.unregister(param.LEVELLOADED)
 	broadcast.unregister(param.GOTO)
 	cam.unfollow(go.get_id())
+	msg.post(param.VirtualGamePadURL, "unregister")
 end
 
 local custom_easing_value={0,1,1,1,0,1,1,1,0}
@@ -382,6 +385,13 @@ function update(self, dt)
 	end
 end
 
+local function pressB(self)
+	--print("B")
+	for k, v in pairs( self.triggers ) do
+		msg.post(k, param.GOTO, {heroID=self.heroID})
+	end
+end
+
 function on_message(self, message_id, message, sender)
 
 	if message_id == CONTACT_POINT_RESPONSE then
@@ -438,6 +448,38 @@ function on_message(self, message_id, message, sender)
 		go.animate("herospine#spinemodel", "tint", go.PLAYBACK_ONCE_FORWARD, vmath.vector4(1, 1, 1, 1), go.EASING_LINEAR, .5)
 		reset(self)
 		timer.delay(.2, false, function() broadcast.send(param.TARGET_ID,{id=go.get_id()}) end)
+
+	----------------------------------------------------
+	-- VIRTUAL pad messages:
+	elseif message_id==param.ANALOG then
+		-- update state of all directions in one message
+		local threshold=.2
+		message.pressed=message.x<-threshold
+		message.released=not message.pressed 
+		-- There is no repeat state at in.state module, so we can just turn on/off for each KEY
+		self.input.on_input(param.LEFT,message)
+
+		message.pressed=message.x>threshold
+		message.released=not message.pressed
+		self.input.on_input(param.RIGHT,message)
+
+		message.pressed=message.y<-threshold
+		message.released=not message.pressed
+		self.input.on_input(param.DOWN,message)
+
+		message.pressed=message.y>threshold
+		message.released=not message.pressed
+		self.input.on_input(param.UP,message)
+
+		--print(message.x,message.y,message.pressed,message.released)
+
+	elseif message_id==param.BUTTON_B and message.released then
+		print("virtual B")
+		pressB(self)
+	elseif message_id==param.BUTTON_A then
+		self.input.on_input(param.DODGE,message)
+	elseif message_id==param.BUTTON_X then
+		self.input.on_input(param.SLASH,message)
 	end
 end
 
@@ -489,9 +531,7 @@ function on_input(self, action_id, action)
 	if action_id==mapper.KEY_P and action.released then 
 		msg.post('@system:', 'toggle_profile')
 	elseif mapped_action_id==param.B and action.released then
-		--print("B")
-		for k, v in pairs( self.triggers ) do
-			msg.post(k, param.GOTO, {heroID=self.heroID})
-		end
+		--print("Button B")
+		pressB(self)
 	end
 end

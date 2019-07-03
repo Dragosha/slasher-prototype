@@ -69,8 +69,8 @@ nodes {
 }
 nodes {
   position {
-    x: 65.0
-    y: -81.0
+    x: 107.857
+    y: -127.429
     z: 0.0
     w: 1.0
   }
@@ -124,8 +124,8 @@ nodes {
 }
 nodes {
   position {
-    x: 65.0
-    y: -105.0
+    x: 107.857
+    y: -151.429
     z: 0.0
     w: 1.0
   }
@@ -179,8 +179,8 @@ nodes {
 }
 nodes {
   position {
-    x: 0.0
-    y: 0.0
+    x: 42.857
+    y: -46.429
     z: 0.0
     w: 1.0
   }
@@ -231,68 +231,6 @@ nodes {
   alpha: 1.0
   template_node_child: false
   size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    x: 1475.0
-    y: 52.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 200.0
-    y: 100.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_TEXT
-  blend_mode: BLEND_MODE_ALPHA
-  text: "X,C + arrows"
-  font: "font1"
-  id: "text"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  outline {
-    x: 0.2
-    y: 0.0
-    z: 0.2
-    w: 1.0
-  }
-  shadow {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  adjust_mode: ADJUST_MODE_FIT
-  line_break: false
-  layer: "text"
-  inherit_alpha: true
-  alpha: 1.0
-  outline_alpha: 1.0
-  shadow_alpha: 1.0
-  template_node_child: false
-  text_leading: 1.0
-  text_tracking: 0.0
 }
 layers {
   name: "text"

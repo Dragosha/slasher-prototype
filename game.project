@@ -7,7 +7,7 @@ main_collection = /main/scene.collectionc
 render = /rendercam_/rendercam_.renderc
 
 [input]
-game_binding = /in/bindings/all.input_bindingc
+game_binding = /input/all.input_bindingc
 use_accelerometer = 0
 
 [display]
