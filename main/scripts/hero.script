@@ -12,10 +12,11 @@ local param=require "main.param"
 local scene=require "main.scene"
 local broadcast = require "ludobits.m.broadcast"
 
-local rpg=require "main.scripts.rpg"
+local rpg = require "main.scripts.rpg"
 
-local input=require "in.state"
-local mapper=require "in.mapper"
+local input = require "in.state"
+local mapper = require "in.mapper"
+local triggers = require "in.triggers"
 
 local NONE=hash("NONE")
 local IDLE=hash("idle")
@@ -63,27 +64,27 @@ function init(self)
 	----
 	input.acquire()
 	self.input=input.create()
-	mapper.bind(mapper.KEY_LEFT, param.LEFT, self.heroID)
-	mapper.bind(mapper.KEY_RIGHT, param.RIGHT, self.heroID)
-	mapper.bind(mapper.KEY_UP, param.UP, self.heroID)
-	mapper.bind(mapper.KEY_DOWN, param.DOWN, self.heroID)
-	--mapper.bind(mapper.KEY_A, param.LEFT, self.heroID)
-	--mapper.bind(mapper.KEY_D, param.RIGHT, self.heroID)
-	--mapper.bind(mapper.KEY_W, param.UP, self.heroID)
-	--mapper.bind(mapper.KEY_S, param.DOWN, self.heroID)
-	mapper.bind(mapper.KEY_C, param.DODGE, self.heroID)
-	--mapper.bind(mapper.KEY_V, param.DASH, self.heroID)
-	mapper.bind(mapper.KEY_X, param.SLASH, self.heroID)
-	mapper.bind(mapper.KEY_B, param.B, self.heroID)
-	mapper.bind(mapper.GAMEPAD_LPAD_LEFT, param.LEFT, self.heroID)
-	mapper.bind(mapper.GAMEPAD_LPAD_RIGHT, param.RIGHT, self.heroID)
-	mapper.bind(mapper.GAMEPAD_LPAD_UP, param.UP, self.heroID)
-	mapper.bind(mapper.GAMEPAD_LPAD_DOWN, param.DOWN, self.heroID)
-	mapper.bind(mapper.GAMEPAD_RPAD_DOWN, param.DODGE, self.heroID)
-	--mapper.bind(mapper.GAMEPAD_RPAD_UP, param.DASH, self.heroID)
-	mapper.bind(mapper.GAMEPAD_RPAD_LEFT, param.SLASH, self.heroID)
-	mapper.bind(mapper.GAMEPAD_RPAD_RIGHT, param.B, self.heroID)
-	mapper.bind(mapper.MOUSE_BUTTON_1, param.CLICK, self.heroID)
+	mapper.bind(triggers.KEY_LEFT, param.LEFT, self.heroID)
+	mapper.bind(triggers.KEY_RIGHT, param.RIGHT, self.heroID)
+	mapper.bind(triggers.KEY_UP, param.UP, self.heroID)
+	mapper.bind(triggers.KEY_DOWN, param.DOWN, self.heroID)
+	--mapper.bind(triggers.KEY_A, param.LEFT, self.heroID)
+	--mapper.bind(triggers.KEY_D, param.RIGHT, self.heroID)
+	--mapper.bind(triggers.KEY_W, param.UP, self.heroID)
+	--mapper.bind(triggers.KEY_S, param.DOWN, self.heroID)
+	mapper.bind(triggers.KEY_C, param.DODGE, self.heroID)
+	--mapper.bind(triggers.KEY_V, param.DASH, self.heroID)
+	mapper.bind(triggers.KEY_X, param.SLASH, self.heroID)
+	mapper.bind(triggers.KEY_B, param.B, self.heroID)
+	mapper.bind(triggers.GAMEPAD_LPAD_LEFT, param.LEFT, self.heroID)
+	mapper.bind(triggers.GAMEPAD_LPAD_RIGHT, param.RIGHT, self.heroID)
+	mapper.bind(triggers.GAMEPAD_LPAD_UP, param.UP, self.heroID)
+	mapper.bind(triggers.GAMEPAD_LPAD_DOWN, param.DOWN, self.heroID)
+	mapper.bind(triggers.GAMEPAD_RPAD_DOWN, param.DODGE, self.heroID)
+	--mapper.bind(triggers.GAMEPAD_RPAD_UP, param.DASH, self.heroID)
+	mapper.bind(triggers.GAMEPAD_RPAD_LEFT, param.SLASH, self.heroID)
+	mapper.bind(triggers.GAMEPAD_RPAD_RIGHT, param.B, self.heroID)
+	mapper.bind(triggers.MOUSE_BUTTON_1, param.CLICK, self.heroID)
 
 	msg.post("#label","disable")
 	msg.post("herospine", "disable")
@@ -490,16 +491,16 @@ function on_input(self, action_id, action)
 	--self.input.on_input(action_id,action)
 
 	local threshold=.75
-	if  action_id==mapper.GAMEPAD_LSTICK_LEFT then
+	if  action_id==triggers.GAMEPAD_LSTICK_LEFT then
 		action.pressed=action.value>threshold
 		self.input.on_input(param.LEFT,action)
-	elseif  action_id==mapper.GAMEPAD_LSTICK_RIGHT then
+	elseif  action_id==triggers.GAMEPAD_LSTICK_RIGHT then
 		action.pressed=action.value>threshold
 		self.input.on_input(param.RIGHT,action)
-	elseif  action_id==mapper.GAMEPAD_LSTICK_UP then
+	elseif  action_id==triggers.GAMEPAD_LSTICK_UP then
 		action.pressed=action.value>threshold
 		self.input.on_input(param.UP,action)
-	elseif  action_id==mapper.GAMEPAD_LSTICK_DOWN then
+	elseif  action_id==triggers.GAMEPAD_LSTICK_DOWN then
 		action.pressed=action.value>threshold
 		self.input.on_input(param.DOWN,action)
 	end
@@ -528,7 +529,7 @@ function on_input(self, action_id, action)
 		--print("Click!", pos, target, len)
 	end]]--
 
-	if action_id==mapper.KEY_P and action.released then 
+	if action_id==triggers.KEY_P and action.released then 
 		msg.post('@system:', 'toggle_profile')
 	elseif mapped_action_id==param.B and action.released then
 		--print("Button B")
