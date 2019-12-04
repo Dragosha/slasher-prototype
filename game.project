@@ -31,3 +31,7 @@ type = 2D
 gravity_y = 0.0
 debug = 0
 
+[html5]
+cssfile = /builtins/manifests/web/dark_theme.css
+scale_mode = fit
+

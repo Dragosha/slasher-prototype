@@ -14,6 +14,7 @@ update_frequency = 0
 vsync = 1
 display_profiles = /builtins/render/default.display_profilesc
 dynamic_orientation = 0
+clear_color = 0
 
 [physics]
 type = 2D
@@ -96,15 +97,14 @@ infoplist = /builtins/manifests/ios/Info.plist
 
 [android]
 version_code = 1
-minimum_sdk_version = 9
-target_sdk_version = 26
+minimum_sdk_version = 16
+target_sdk_version = 28
 package = com.dragosha.slasher
 manifest = /builtins/manifests/android/AndroidManifest.xml
 iap_provider = GooglePlay
 input_method = KeyEvent
 immersive_mode = 0
 debuggable = 0
-proguard = /builtins/manifests/android/dmengine.pro
 
 [osx]
 infoplist = /builtins/manifests/osx/Info.plist
@@ -116,9 +116,13 @@ app_icon = /assets/app_icons/appicon.ico
 
 [html5]
 custom_heap_size = 0
-include_dev_tool = 0
+heap_size = 256
 htmlfile = /builtins/manifests/web/engine_template.html
+cssfile = /builtins/manifests/web/dark_theme.css
 archive_location_prefix = archive
+show_fullscreen_button = 1
+show_made_with_defold = 1
+scale_mode = fit
 
 [particle_fx]
 max_count = 64
@@ -135,8 +139,6 @@ http_timeout = 0
 [script]
 shared_state = 1
 
-[tracking]
-
 [label]
 max_count = 64
 subpixels = 1
@@ -146,4 +148,8 @@ track_cpu = 0
 
 [liveupdate]
 settings = /liveupdate.settings
+
+[tilemap]
+max_count = 16
+max_tile_count = 2048
 
