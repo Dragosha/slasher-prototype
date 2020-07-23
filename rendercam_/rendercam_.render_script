@@ -9,7 +9,14 @@ local UPDATE_WINDOW = hash("update window")
 
 
 local function update_window(self)
-	rendercam.update_window(render.get_window_width(), render.get_window_height())
+	print ('update_window', render.get_window_width(), render.get_window_height())
+	local w = render.get_window_width() or 0
+	local h = render.get_window_height() or 0
+
+	if w == 0 or h == 0 then
+		return
+	end
+	rendercam.update_window(w, h)
 	self.gui_proj = vmath.matrix4_orthographic(0, rendercam.window.x, 0, rendercam.window.y, -1, 1)
 end
 
@@ -23,9 +30,11 @@ function init(self)
 	self.particle_pred = render.predicate({"particle"})
 
 	self.clear_color = vmath.vector4(0)
-
+	print ('update_window_size', render.get_window_width(), render.get_window_height(), render.get_width())
+	local w = render.get_window_width() or 0
+	local h = render.get_window_height() or 0
 	rendercam.configWin.x = render.get_width();  rendercam.configWin.y = render.get_height()
-	rendercam.update_window_size(render.get_window_width(), render.get_window_height())
+	rendercam.update_window_size(w, h)
 	update_window(self)
 end
 

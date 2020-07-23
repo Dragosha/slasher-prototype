@@ -1191,7 +1191,7 @@ embedded_instances {
   "pivot: PIVOT_W\\n"
   "blend_mode: BLEND_MODE_ALPHA\\n"
   "line_break: false\\n"
-  "text: \\\"Controls:\\\"\\n"
+  "text: \\\"1.1 Controls:\\\"\\n"
   "font: \\\"/builtins/fonts/system_font.font\\\"\\n"
   "material: \\\"/builtins/fonts/label.material\\\"\\n"
   "\"\n"
