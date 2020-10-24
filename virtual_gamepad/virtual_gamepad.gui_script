@@ -1,21 +1,26 @@
-local param=require "main.param"
+local param = require "main.param"
 local broadcast = require "ludobits.m.broadcast"
  
 local function hide(node, value)
-	local color=gui.get_color(node)
+	local color = gui.get_color(node)
 	if value then 
-		color.w=.2
+		color.w = 0.2
 	else
-		color.w=1
+		color.w = 1
 	end
 	gui.set_color(node, color)
 
 end
 
-local buttons={}
-local function registerButton(node_or_node_id, message_id)
-	local node= (type(node_or_node_id) == "string" and gui.get_node(node_or_node_id) or node_or_node_id)
-	buttons[node_or_node_id]={message_id=message_id, node=node, scale=gui.get_scale(node), color=gui.get_color(node)}
+local buttons = {}
+local function register_button(node_or_node_id, message_id)
+	local node = (type(node_or_node_id) == "string" and gui.get_node(node_or_node_id) or node_or_node_id)
+	buttons[node_or_node_id] = {
+		message_id = message_id,
+		node = node,
+		scale = gui.get_scale(node),
+		color = gui.get_color(node)
+	}
 end
 
 local function shake(node, initial_scale)
@@ -36,9 +41,9 @@ function init(self)
 	self.button_b = gui.get_node("button_b")
 
 
-	registerButton("button_a",param.BUTTON_A)
-	registerButton("button_b",param.BUTTON_B)
-	registerButton("button_x",param.BUTTON_X)
+	register_button("button_a", param.BUTTON_A)
+	register_button("button_b", param.BUTTON_B)
+	register_button("button_x", param.BUTTON_X)
 
 	self.analog_start_position = gui.get_position(self.analog)
 
@@ -56,10 +61,13 @@ end
 function on_message(self, message_id, message, sender)
 	if message_id == hash("register") then
 		self.listener = sender
+
 	elseif message_id == hash("unregister") then
 		self.listener = nil
-	elseif message_id==param.GOTO then
+
+	elseif message_id == param.GOTO then
 		hide(self.button_b, true)
+
 	elseif message_id == param.BUTTON_B_AVAILABLE then
 		hide(self.button_b, not message.value)
 	end
@@ -77,7 +85,7 @@ local function handle_touch(self, touch, touch_index)
 		for __, v in pairs( buttons ) do
 			if gui.pick_node(v.node, touch.x, touch.y) then
 				post_to_listener(self, v.message_id, { pressed = true })
-				v.pressed=true
+				v.pressed = true
 				shake(v.node,v.scale)
 				return true
 			end
@@ -85,7 +93,11 @@ local function handle_touch(self, touch, touch_index)
 		if gui.pick_node(self.analog, touch.x, touch.y) then
 			gui.cancel_animation(self.analog, gui.PROP_POSITION)
 			local touch_pos = vmath.vector3(touch.x, touch.y, 0)
-			self.analog_pressed = { pos = touch_pos, offset = touch_pos - self.analog_start_position, index = touch_index }
+			self.analog_pressed = {
+				pos = touch_pos,
+				offset = touch_pos - self.analog_start_position,
+				index = touch_index 
+			}
 		end
 	elseif touch.released then
 		if self.analog_pressed and self.analog_pressed.index == touch_index then
@@ -96,7 +108,7 @@ local function handle_touch(self, touch, touch_index)
 			for __, v in pairs( buttons ) do
 				if gui.pick_node(v.node, touch.x, touch.y) and v.pressed then
 					post_to_listener(self, v.message_id, { released = true })
-					v.pressed=nil
+					v.pressed = nil
 					return true
 				end
 			end
@@ -104,7 +116,7 @@ local function handle_touch(self, touch, touch_index)
 			for __, v in pairs( buttons ) do
 				if v.pressed then
 					post_to_listener(self, v.message_id, { released = true })
-					v.pressed=nil
+					v.pressed = nil
 				end
 			end
 		end

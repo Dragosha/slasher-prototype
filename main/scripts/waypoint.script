@@ -1,6 +1,10 @@
-local routine=require "main.scripts.routine"
+local routine = require "main.m.routine"
+
 function init(self)
-	table.insert( routine.waypoints, 1, {id=go.get_id(), pos=go.get_position()} )
+	table.insert( routine.waypoints, 1, {
+		id = go.get_id(),
+		pos = go.get_position()
+	} )
 	msg.post("#sprite", "disable")
 end
 

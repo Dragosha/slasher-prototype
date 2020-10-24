@@ -1,3 +1,3 @@
 function init(self)
-	print(go.get_id(),msg.url())
+	print("My id is:", go.get_id(), "my url is:", msg.url())
 end

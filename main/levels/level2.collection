@@ -83,8 +83,8 @@ instances {
   id: "waypoint1"
   prototype: "/main/tiles/waypoint.go"
   position {
-    x: 456.0
-    y: -117.0
+    x: 674.0
+    y: 40.0
     z: 0.0
   }
   rotation {
@@ -143,8 +143,8 @@ instances {
   id: "waypoint4"
   prototype: "/main/tiles/waypoint.go"
   position {
-    x: 1732.0
-    y: 95.0
+    x: 1426.0
+    y: 119.0
     z: 0.0
   }
   rotation {
@@ -163,8 +163,8 @@ instances {
   id: "waypoint5"
   prototype: "/main/tiles/waypoint.go"
   position {
-    x: 642.0
-    y: 224.0
+    x: 678.0
+    y: 160.0
     z: 0.0
   }
   rotation {
@@ -183,8 +183,8 @@ instances {
   id: "waypoint6"
   prototype: "/main/tiles/waypoint.go"
   position {
-    x: 840.0
-    y: -70.0
+    x: 904.0
+    y: -19.0
     z: 0.0
   }
   rotation {
@@ -223,8 +223,8 @@ instances {
   id: "waypoint8"
   prototype: "/main/tiles/waypoint.go"
   position {
-    x: 1213.0
-    y: -7.0
+    x: 1186.0
+    y: 29.0
     z: 0.0
   }
   rotation {
@@ -373,6 +373,22 @@ collection_instances {
     y: 0.0
     z: 0.0
     w: 1.0
+  }
+  instance_properties {
+    id: "monster"
+    properties {
+      id: "monster"
+      properties {
+        id: "attackRadius"
+        value: "800.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "velocity"
+        value: "200.0, 100.0, 0.0"
+        type: PROPERTY_TYPE_VECTOR3
+      }
+    }
   }
   scale3 {
     x: 1.0

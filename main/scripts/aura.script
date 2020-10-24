@@ -1,7 +1,7 @@
 function init(self)
-	local scale=go.get_scale()
-	scale.x=scale.x*1.1
-	scale.y=scale.y*1.2
-	go.animate(".", "scale", go.PLAYBACK_LOOP_PINGPONG, scale, go.EASING_LINEAR, math.random(2,4))
+	local scale = go.get_scale()
+	scale.x = scale.x * 1.1
+	scale.y = scale.y * 1.2
+	go.animate(".", "scale", go.PLAYBACK_LOOP_PINGPONG, scale, go.EASING_LINEAR, math.random(2, 4))
 end
 

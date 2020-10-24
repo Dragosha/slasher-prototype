@@ -7,65 +7,68 @@
 -- Scene controller
 -- load/undload levels
 
-local param=require "main.param"
-local scene=require "main.scene"
+local param = require "main.param"
+local scene = require "main.scene"
 local broadcast = require "ludobits.m.broadcast"
 
 
-
-
 function load_complete(self, url, result)
-    -- Loading is complete, resources are ready to spawn
+	-- Loading is complete, resources are ready to spawn
 
-    self.ids = collectionfactory.create(url)
+	self.ids = collectionfactory.create(url)
 	--pprint(self.ids)
 	local back = self.ids[hash("/background")]
-	local cam=self.ids[hash("/camera")]
-	local colider=self.ids[hash("/colider")]
+	local cam = self.ids[hash("/camera")]
+	local colider = self.ids[hash("/colider")]
 
 	go.set(back, "euler.x", param.angle)
 	go.set(back, "position.z", 0)
 
-	-- Iterates all objects in collection and corrects their Z-coordinate based on Y-coordinate: pos.z=pos.z+(pos.y/param.kY)*param.kZ
+	-- Iterates all objects in collection and corrects their Z-coordinate 
+	-- based on Y-coordinate: pos.z = pos.z + (pos.y / param.kY) * param.kZ
 	for k, v in pairs( self.ids ) do
-		if v~=back and v~=cam and v~=colider then 
-			local pos=go.get_position(v)
+		if v ~= back and v ~= cam and v ~= colider then 
+			local pos = go.get_position(v)
 			local p = go.get_world_position(v)
-			pos.z=pos.z+(pos.y/param.kY)*param.kZ
-			--pos.y=pos.y*param.kY
+			pos.z = pos.z + (pos.y / param.kY) * param.kZ
 			go.set_position(pos, v)
-			--print( k, v, pos, p, pos.y==p.y )
 		end
 	end
 
-	---- Getting stat position for the hero
+	---- Getting start position of the hero
 	local targetpos
-	if self.target==hash("") or self.target==nil then self.target=hash("/startpoint") end
-	local targetID=self.ids[self.target]
-	if targetID then
-		targetpos=go.get_position(targetID)
-		print("Hero's start point:", self.target, targetID, targetpos)
+	if self.target == hash("") or self.target == nil then self.target = hash("/startpoint") end
+	local target_id = self.ids[self.target]
+	if target_id then
+		targetpos = go.get_position(target_id)
+		print("Hero's start point:", self.target, target_id, targetpos)
 	end
 
-	timer.delay(.1,false, function() broadcast.send(param.LEVELLOADED,{name=self.name, targetpos=targetpos}) end)
+	timer.delay(0.1, false,
+		function()
+			broadcast.send(param.LEVELLOADED, {
+				name = self.name,
+				targetpos = targetpos
+			})
+		end)
 end
 
 function load(self, name, target)
-	self.name=name
-	self.target=target
+	self.name = name
+	self.target = target
 	collectionfactory.load(name, load_complete)
 end
 
 function unload(self)
-	go.delete_all(self.ids)
-    collectionfactory.unload(self.name)
+	go.delete(self.ids, true)
+	collectionfactory.unload(self.name)
 
-    self.name=nil
-    self.ids=nil
+	self.name = nil
+	self.ids = nil
 end
 
 function init(self)
-	load(self,"/levels#3")
+	load(self, "/levels#3")
 
 	broadcast.register(param.GOTO)
 end
@@ -79,14 +82,11 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id==param.GOTO then
+	if message_id == param.GOTO then
 		unload(self)
-		timer.delay(.2, false, function() load(self,"/levels#"..message.value, message.target) end) 
+		timer.delay(0.2, false,
+			function() 
+				load(self, "/levels#"..message.value, message.target) 
+			end) 
 	end
-end
-
-function on_input(self, action_id, action)
-end
-
-function on_reload(self)
 end

@@ -1,16 +1,16 @@
-local param=require "main.param"
+local param = require "main.param"
 local broadcast = require "ludobits.m.broadcast"
 go.property("value", 0)
 go.property("target", hash(""))
 
 local TRIGGER_RESPONSE = hash("trigger_response")
-local HERO= hash("hero")
+local HERO = hash("hero")
 
 function init(self)
 	msg.post('#sprite', 'disable')
 	msg.post('#label', 'disable')
-	local pos=go.get_position()
-	pos.z=pos.z+(pos.y/param.kY)*param.kZ
+	local pos = go.get_position()
+	pos.z = pos.z + (pos.y / param.kY) * param.kZ
 	--msg.post("#pressb", "updatenode", { id = "box", position = pos})
 end
 
@@ -20,19 +20,20 @@ end
 
 function on_message(self, message_id, message, sender)
 	
-	if message_id==TRIGGER_RESPONSE then 
-		if message.other_group==HERO then
+	if message_id == TRIGGER_RESPONSE then 
+		if message.other_group == HERO then
 			 if message.enter then
 			 	msg.post('#sprite', 'enable')
 			 	msg.post('#label', 'enable')
-			 	broadcast.send(param.BUTTON_B_AVAILABLE,{value=true})
+			 	broadcast.send(param.BUTTON_B_AVAILABLE, { value = true })
 			 else
 			 	msg.post('#sprite', 'disable')
 			 	msg.post('#label', 'disable')
-			 	broadcast.send(param.BUTTON_B_AVAILABLE,{value=false})
+			 	broadcast.send(param.BUTTON_B_AVAILABLE, { value = false })
 			 end
 		end
-	elseif message_id==param.GOTO then
-		broadcast.send(param.GOTO,{value=self.value,target=self.target})
+
+	elseif message_id == param.GOTO then
+		broadcast.send(param.GOTO, {value = self.value, target = self.target })
 	end
 end

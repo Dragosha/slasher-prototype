@@ -32,6 +32,11 @@ components {
     value: "#fireballfx"
     type: PROPERTY_TYPE_URL
   }
+  properties {
+    id: "speed"
+    value: "250.0"
+    type: PROPERTY_TYPE_NUMBER
+  }
 }
 embedded_components {
   id: "sprite"
@@ -70,7 +75,7 @@ embedded_components {
   "    shape_type: TYPE_SPHERE\n"
   "    position {\n"
   "      x: 0.0\n"
-  "      y: -50.0\n"
+  "      y: 0.0\n"
   "      z: 0.0\n"
   "    }\n"
   "    rotation {\n"
