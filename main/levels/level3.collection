@@ -1474,7 +1474,7 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"tile_set: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "default_animation: \\\"lightaura\\\"\\n"
-  "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
+  "material: \\\"/assets/materials/lights/light.material\\\"\\n"
   "blend_mode: BLEND_MODE_ADD\\n"
   "\"\n"
   "  position {\n"
@@ -1491,9 +1491,9 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 314.0
-    y: -150.0
-    z: 1.0
+    x: 259.0
+    y: -152.819
+    z: -0.026
   }
   rotation {
     x: 0.0

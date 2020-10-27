@@ -1,7 +1,7 @@
 [project]
 title = Slasher-prototype
 dependencies = https://github.com/britzl/defold-input/archive/master.zip,https://github.com/rgrams/rendercam/archive/v1.0.1.zip,https://github.com/britzl/ludobits/archive/6.6.0.zip
-version = 1.1
+version = 1.2
 
 [bootstrap]
 main_collection = /main/scene.collectionc

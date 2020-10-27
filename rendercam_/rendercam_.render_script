@@ -1,4 +1,5 @@
 
+local lights = require  "rendercam_.lights"
 local rendercam = require "rendercam.rendercam"
 local vp = rendercam.viewport
 
@@ -6,7 +7,11 @@ local IDENTITY_MATRIX = vmath.matrix4()
 local CLEAR_COLOR = hash("clear_color")
 local WINDOW_RESIZED = hash("window_resized")
 local UPDATE_WINDOW = hash("update window")
+local AMBIENT = hash("ambient")
 
+
+local BLACK = vmath.vector4(0)
+local AMBIENT_LIGHT = vmath.vector4(0.3, 0.4, 0.4, 1.0)
 
 local function update_window(self)
 	print ('update_window', render.get_window_width(), render.get_window_height())
@@ -29,46 +34,84 @@ function init(self)
 	self.model_pred = render.predicate({"model"})
 	self.particle_pred = render.predicate({"particle"})
 
+	self.quad_pred = render.predicate({"quad"})
+	self.light_pred = render.predicate({"light"})
+
 	self.clear_color = vmath.vector4(0)
 	print ('update_window_size', render.get_window_width(), render.get_window_height(), render.get_width())
-	local w = render.get_window_width() or 0
-	local h = render.get_window_height() or 0
+	local w = render.get_window_width() or 1
+	local h = render.get_window_height() or 1
 	rendercam.configWin.x = render.get_width();  rendercam.configWin.y = render.get_height()
 	rendercam.update_window_size(w, h)
 	update_window(self)
+
+	self.width = w
+	self.height = h
+
+	-- creates separate render targets for lights and for all other objects
+	lights.create_render_targets(self)
 end
 
 function update(self)
-	render.set_depth_mask(true)
-	render.set_stencil_mask(0xff)
-	render.clear({[render.BUFFER_COLOR_BIT] = self.clear_color, [render.BUFFER_DEPTH_BIT] = 1, [render.BUFFER_STENCIL_BIT] = 0})
+
+	-- recreate render targets if screen size has changed
+	local window_width = render.get_window_width()
+	local window_height = render.get_window_height()
+	if self.width ~= window_width or self.height ~= window_height then
+		self.width = window_width
+		self.height = window_height
+		lights.create_render_targets(self)
+	end
+
 
 	render.set_viewport(vp.x, vp.y, vp.width, vp.height)
 
-	render.set_view(rendercam.calculate_view())
-	render.set_projection(rendercam.calculate_proj())
+	local view = rendercam.calculate_view()
+	local proj = rendercam.calculate_proj()
+	render.set_view(view)
+	render.set_projection(proj)
 
-	-- Sprite and particle rendering
-	render.set_depth_mask(false)
-	render.disable_state(render.STATE_DEPTH_TEST)
-	render.disable_state(render.STATE_STENCIL_TEST)
-	render.enable_state(render.STATE_BLEND)
-	render.set_blend_func(render.BLEND_SRC_ALPHA, render.BLEND_ONE_MINUS_SRC_ALPHA)
-	render.disable_state(render.STATE_CULL_FACE)
+	-- draw normal sprites, tilemaps etc
+	lights.render_to_rt(self, self.normal_rt, function(self)
+		lights.clear(BLACK, nil, nil)
+		lights.render_to_world(self, { self.bgtile_pred, self.tile_pred, self.particle_pred, self.overtile_pred })
+	end)
 
-	render.draw(self.bgtile_pred)
-	render.draw(self.tile_pred)
-	render.draw(self.particle_pred)
-	render.draw(self.overtile_pred)
+	-- draw lights
+	lights.render_to_rt(self, self.light_rt, function(self)
+		-- add some flicker to the light
+		local constants = render.constant_buffer()
+		
+		self.light_power = self.light_power or 1.5
+		self.light_gain = self.light_gain or 0.01
+		self.light_power = self.light_power + self.light_gain
+		if self.light_power > 2 then 
+			self.light_gain = -0.01
+		elseif self.light_power < 1.3 then
+			self.light_gain = 0.01
+		end
+		constants.time = vmath.vector4(self.light_power, 1 ,1, 1)
+		-- constants.tint = vmath.vector4(0.1, 1, 1, 1.0)
 
-	-- Model rendering
-	render.set_blend_func(render.BLEND_SRC_ALPHA, render.BLEND_ONE_MINUS_SRC_ALPHA)
-	render.enable_state(render.STATE_CULL_FACE)
-	render.enable_state(render.STATE_DEPTH_TEST)
-	render.set_depth_mask(true)
-	render.draw(self.model_pred)
+		self.ambient = self.ambient or AMBIENT_LIGHT
+		lights.clear(self.ambient, nil, nil)
+		lights.render_to_world(self, { self.light_pred }, constants)
+	end)
+
+	-- draw combination of normal and lights to quad
+	lights.render_to_quad(self, function(self)
+		lights.clear(BLACK, nil, nil)
+		-- lights.draw_to_quad(self, self.normal_rt)
+		-- lights.draw_to_quad(self, self.light_rt)
+		lights.multiply_to_quad(self, self.normal_rt, self.light_rt)
+		-- lights.mix_to_quad(self, self.normal_rt, self.light_rt)
+	end)
+
+
 
 	-- Debug rendering - physics debug, draw_line
+	render.set_view(view)
+	render.set_projection(proj)
 	render.disable_state(render.STATE_DEPTH_TEST)
 	render.disable_state(render.STATE_CULL_FACE)
 	render.draw_debug3d()
@@ -84,12 +127,38 @@ function update(self)
 	render.disable_state(render.STATE_STENCIL_TEST)
 end
 
+local ambients = {
+	vmath.vector4(0.05, 0.05, 0.6, 1.0),
+	vmath.vector4(0.1, 0.1, 0.65, 1.0),
+	vmath.vector4(0.2, 0.2, 0.6, 1.0),
+	vmath.vector4(0.2, 0.3, 0.5, 1.0),
+	vmath.vector4(0.3, 0.4, 0.4, 1.0),
+	vmath.vector4(0.4, 0.4, 0.4, 1.0),
+	vmath.vector4(0.5, 0.4, 0.4, 1.0),
+	vmath.vector4(0.6, 0.5, 0.4, 1.0),
+	vmath.vector4(0.6, 0.6, 0.5, 1.0),
+	vmath.vector4(0.7, 0.7, 0.6, 1.0),
+	vmath.vector4(0.8, 0.8, 0.7, 1.0),
+	vmath.vector4(0.9, 0.9, 0.8, 1.0),
+	vmath.vector4(1, 1, 0.9, 1.0),
+	vmath.vector4(1, 1, 1, 1.0),
+}
+
 function on_message(self, message_id, message)
 	if message_id == CLEAR_COLOR then
 		self.clear_color = message.color
+	
 	elseif message_id == WINDOW_RESIZED then -- sent by engine
 		update_window(self)
+	
 	elseif message_id == UPDATE_WINDOW then -- sent by rendercam when a camera is activated ("window_resized" engine message requires data)
 		update_window(self)
+	
+	elseif message_id == AMBIENT then -- change ambient color
+		self.ambient_num = self.ambient_num or 0
+		self.ambient_num = self.ambient_num + 1
+		if self.ambient_num > #ambients then self.ambient_num = 1 end
+
+		self.ambient =  ambients [self.ambient_num]
 	end
 end

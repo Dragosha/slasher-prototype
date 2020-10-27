@@ -107,16 +107,16 @@ function M.target_seek(self)
 end
 
 function M.raycast_response(self, result)
-	local saw = result.id == self.router.target_id
+	local saw = (result.id or "") == self.router.target_id
 	if not saw then 
 		
-		local myPosition = go.get_position()
+		local my_position = go.get_position()
 		local len = 100000000
 		local wp = {}
 		for i = 1, #M.waypoints do
 			local p = M.waypoints[i]
-			local l = vmath.length_sqr(myPosition - p.pos)
-			if len > l and self.router.wayPoint ~= p.id then
+			local l = vmath.length_sqr(my_position - p.pos)
+			if len > l and self.router.waypoint ~= p.id then
 				len = l
 				table.insert( wp, 1, p )
 			end
@@ -125,15 +125,15 @@ function M.raycast_response(self, result)
 		local point = #wp>0 and wp[math.random( 1, math.min(#wp,3) )] or nil
 		if point then 
 			self.router.target_pos = point.pos
-			self.router.wayPoint = point.id
+			self.router.waypoint = point.id
 		else
 			self.router.target_pos = nil
-			self.router.wayPoint = nil
+			self.router.waypoint = nil
 		end
 
 	else
 		self.router.target_pos = go.get_position(self.router.target_id)
-		self.router.wayPoint = nil
+		self.router.waypoint = nil
 	end
 
 	M.check_direction(self)

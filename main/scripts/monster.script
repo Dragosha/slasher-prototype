@@ -16,7 +16,7 @@ local rpg = require "main.m.rpg"
 local COLLISION_RESPONSE = hash("collision_response")
 local CONTACT_POINT_RESPONSE = hash("contact_point_response")
 local SPINE_EVENT = hash("spine_event")
-local SLASH =  hash("slash")
+local SLASH = hash("slash")
 local FIRE = hash("fire")
 
 
@@ -71,7 +71,7 @@ local function pursuit_solver(self)
 
 		local xD = self.attack_radius_x
 		local yD = self.attack_radius_y
-		if self.router.wayPoint then xD = 0; yD = 0 end
+		if self.router.waypoint then xD = 0; yD = 0 end
 
 		--local aX = math.abs( target_pos.x - position.x )
 		--local aY = math.abs( target_pos.y - position.y )
@@ -215,15 +215,22 @@ local function on_spine_event(self, message)
 
 			if pos and fireposition then
 				pos.y = pos.y + 50
-				local angle = -math.atan2(pos.x - fireposition.x, pos.y - fireposition.y)
-				local quat = vmath.quat_rotation_z(angle)
-				self.weapon_angle = quat
+				-- local angle = -math.atan2(pos.x - fireposition.x, pos.y - fireposition.y)
+				-- local quat = vmath.quat_rotation_z(angle)
+				-- local direction = vmath.rotate(quat, vmath.vector3(0, 1, 0))
+				local direction = vmath.normalize(pos - fireposition)
 
-				factory.create(self.bullet, fireposition, quat, {
+				local id = factory.create(self.bullet, fireposition, nil, {
 					speed = 650,
+					direction = direction,
 					damage = 1,
 					type = rpg.MAGIC 
 				})
+
+				--  add a light source to bullet
+				local l = factory.create("/fx/fx#light", vmath.vector3(), nil, nil, vmath.vector3(0.3, 0.3, 1))
+				go.animate(l, "scale", go.PLAYBACK_ONCE_FORWARD, vmath.vector3(3, 3, 1), go.EASING_LINEAR, 0.2)
+				go.set_parent(l, id)
 
 				print("fire!", self.bullet)
 			end

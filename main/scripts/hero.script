@@ -543,6 +543,9 @@ function on_input(self, action_id, action)
 		
 	elseif action_id == triggers.KEY_O and action.released then 
 		msg.post('@system:', 'toggle_physics_debug')
+	
+	elseif action_id == triggers.KEY_A and action.released then 
+		msg.post('@render:', 'ambient')
 
 	elseif mapped_action_id == param.B and action.released then
 		--print("Button B")

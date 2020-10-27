@@ -11,17 +11,17 @@ local M = {
 	kZ = -1/3,
 	kY = .91,
 
-	--param.angle=-40
-	--param.kZ=-1/1.5
-	--param.kY=0.75
+	--param.angle = -40
+	--param.kZ = -1/1.5
+	--param.kY = 0.75
 
-	--param.angle=-20
-	--param.kZ=-1/3
-	--param.kY=.91
+	--param.angle = -20
+	--param.kZ = -1/3
+	--param.kY = .91
 
-	--param.angle=0
-	--param.kZ=0
-	--param.kY=1
+	--param.angle = 0
+	--param.kZ = 0
+	--param.kY = 1
 	-------------------------------------
 	-- hashes
 	LEFT = hash("left"),
