@@ -86,7 +86,7 @@ function init(self)
 	mapper.bind(triggers.GAMEPAD_RPAD_RIGHT, param.B, self.hero_id)
 	mapper.bind(triggers.MOUSE_BUTTON_1, param.CLICK, self.hero_id)
 
-	msg.post("#label", "disable")
+	-- msg.post("#label", "disable")
 	msg.post("herospine", "disable")
 
 	broadcast.register(param.LEVELLOADED)
@@ -278,27 +278,38 @@ function update(self, dt)
 		end
 	end
 	
+	------------ DEBUG
+	local dbg = ""
+	
 	if not self.special then
 		if self.input.is_pressed(param.LEFT) then 
 			self.vel.x = -375
 			walking = true
-			self.direction=LEFT
+			self.direction = LEFT
 
+			dbg = dbg .. "<"
 		elseif self.input.is_pressed(param.RIGHT) then
 			self.vel.x = 375
 			walking = true
 			self.direction = RIGHT
+
+			dbg = dbg .. ">"
 		end
 
 		if self.input.is_pressed(param.UP) then 
 			self.vel.y = 250
 			walking = true
 
+			dbg = dbg .. "^"
 		elseif self.input.is_pressed(param.DOWN) then
 			self.vel.y = -250
 			walking = true
+
+			dbg = dbg .. "_"
 		end
 	end
+	
+	label.set_text("#label", dbg)
 		
 
 	-----
@@ -336,10 +347,6 @@ function update(self, dt)
 	if math.abs(self.vel.x) < 1 then self.vel.x = 0 end
 	if math.abs(self.vel.y) < 1 then self.vel.y = 0 end
 
-
-	------------ DEBUG
-	local dbg = ""..self.other_mass
-	label.set_text("#label", dbg)
 	------------
 	if self.other_mass.z > 0 then 
 
@@ -517,24 +524,28 @@ function on_input(self, action_id, action)
 	
 	local mapped_action_id = mapper.on_input(action_id, self.hero_id)
 	self.input.on_input(mapped_action_id, action)
-	--self.input.on_input(action_id,action)
 
-	local threshold = 0.75
+	-- label.set_text("#label", tostring(action_id))
+	local threshold = 0.45
 
 	if  action_id == triggers.GAMEPAD_LSTICK_LEFT then
 		action.pressed = action.value > threshold
+		action.released = not action.pressed
 		self.input.on_input(param.LEFT, action)
 
 	elseif  action_id == triggers.GAMEPAD_LSTICK_RIGHT then
 		action.pressed = action.value > threshold
+		action.released = not action.pressed
 		self.input.on_input(param.RIGHT, action)
 
 	elseif  action_id == triggers.GAMEPAD_LSTICK_UP then
 		action.pressed = action.value > threshold
+		action.released = not action.pressed
 		self.input.on_input(param.UP, action)
 
 	elseif  action_id == triggers.GAMEPAD_LSTICK_DOWN then
 		action.pressed = action.value > threshold
+		action.released = not action.pressed
 		self.input.on_input(param.DOWN,action)
 	end
 	
