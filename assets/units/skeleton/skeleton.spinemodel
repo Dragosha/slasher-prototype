@@ -2,4 +2,4 @@ spine_scene: "/assets/units/skeleton/skeleton.spinescene"
 default_animation: "idle"
 skin: "skeleton1"
 blend_mode: BLEND_MODE_ALPHA
-material: "/builtins/materials/spine.material"
+material: "/defold-spine/assets/spine.material"
