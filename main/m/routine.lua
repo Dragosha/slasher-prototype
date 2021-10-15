@@ -107,7 +107,7 @@ function M.target_seek(self)
 end
 
 function M.raycast_response(self, result)
-	local saw = (result.id or "") == self.router.target_id
+	local saw = (result and result.id or "") == self.router.target_id
 	if not saw then 
 		
 		local my_position = go.get_position()
