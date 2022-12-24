@@ -1,3 +1,2 @@
-spine_json: "/assets/units/hero/hero.json"
+spine_json: "/assets/units/hero/hero.spinejson"
 atlas: "/assets/rgba/hero.atlas"
-sample_rate: 30.0
