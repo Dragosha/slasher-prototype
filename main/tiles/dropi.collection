@@ -183,7 +183,7 @@ embedded_instances {
   "skin: \\\"skeleton2\\\"\\n"
   "blend_mode: BLEND_MODE_ALPHA\\n"
   "material: \\\"/defold-spine/assets/spine.material\\\"\\n"
-  "create_go_bones: false\\n"
+  "create_go_bones: true\\n"
   "\"\n"
   "  position {\n"
   "    x: 0.0\n"

@@ -15,9 +15,6 @@ local rpg = require "main.m.rpg"
 
 local COLLISION_RESPONSE = hash("collision_response")
 local CONTACT_POINT_RESPONSE = hash("contact_point_response")
-local SPINE_EVENT = hash("spine_event")
-local SLASH = hash("slash")
-local FIRE = hash("fire")
 
 
 -- url to spine model
@@ -184,61 +181,6 @@ local function on_damage_event(self, message)
 end
 
 ----
-local function on_spine_event(self, message)
-
-
-	if message.event_id == SLASH then
-
-		if self.melee then
-			local pos = self.router.target_pos
-			if pos then
-				if 	pos.x > self.position.x and self.direction == routine.RIGHT or
-					pos.x < self.position.x and self.direction == routine.LEFT then
-					--print("Attack", self.router.target_id, pos, self.position, self.direction)
-					msg.post(self.router.target_id, param.DODAMAGE, {
-						id = self.ID,
-						value = 10,
-						type = rpg.PHYSICAL
-					})
-				end
-			end
-
-		else
-			local firebone = spine.get_go(self.spineurl, "fireposition")
-			local fireposition = go.get_world_position(firebone)
-			fireposition.z = fireposition.z + 10
-
-			local pos = go.get_position(self.router.target_id)
-			self.router.target_pos = pos
-			routine.check_direction(self)
-			routine.model_flip(self)
-
-			if pos and fireposition then
-				pos.y = pos.y + 50
-				-- local angle = -math.atan2(pos.x - fireposition.x, pos.y - fireposition.y)
-				-- local quat = vmath.quat_rotation_z(angle)
-				-- local direction = vmath.rotate(quat, vmath.vector3(0, 1, 0))
-				local direction = vmath.normalize(pos - fireposition)
-
-				local id = factory.create(self.bullet, fireposition, nil, {
-					speed = 650,
-					direction = direction,
-					damage = 1,
-					type = rpg.MAGIC 
-				})
-
-				--  add a light source to bullet
-				local l = factory.create("/fx/fx#light", vmath.vector3(), nil, nil, vmath.vector3(0.3, 0.3, 1))
-				go.animate(l, "scale", go.PLAYBACK_ONCE_FORWARD, vmath.vector3(3, 3, 1), go.EASING_LINEAR, 0.2)
-				go.set_parent(l, id)
-
-				print("fire!", self.bullet)
-			end
-		end
-	end
-end
-
-----
 function init(self)
 	self.vel = vmath.vector3()
 	self.position = go.get_position()
@@ -301,7 +243,8 @@ function final(self)
 end
 
 
-function update(self, dt)
+-- function update(self, dt)
+function fixed_update(self, dt)
 
 	if self.die then return end
 	
@@ -380,9 +323,6 @@ function on_message(self, message_id, message, sender)
 
 	elseif message_id == param.DODAMAGE then
 		on_damage_event(self, message)
-
-	elseif message_id == SPINE_EVENT then
-		on_spine_event(self, message)
 
 	end
 

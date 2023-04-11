@@ -4,6 +4,8 @@
 -----------------------------------------------------------------
 
 local scene = require "main.scene"
+local rpg 	= require "main.m.rpg"
+local param = require "main.param"
 local M = {}
 
 local ray_groups = { hash("default"), hash("solid") }
@@ -22,6 +24,10 @@ M.DIE = hash("die")
 M.ATTACK = hash("attack")
 M.PURSUIT = hash("pursuit")
 M.WAIT = hash("wait")
+
+local SLASH = hash("slash")
+local FIRE = hash("fire")
+
 
 
 
@@ -143,6 +149,65 @@ end
 
 
 
+local spine_animation_done = hash("spine_animation_done")
+local spine_event = hash("spine_event")
+
+local function spine_cb(self, message_id, message, sender)
+	if message_id == spine_event then
+		if message.event_id == SLASH then
+
+			if self.melee then
+				local pos = self.router.target_pos
+				if pos then
+					if 	pos.x > self.position.x and self.direction == M.RIGHT or
+						pos.x < self.position.x and self.direction == M.LEFT then
+						--print("Attack", self.router.target_id, pos, self.position, self.direction)
+						msg.post(self.router.target_id, param.DODAMAGE, {
+							id = self.ID,
+							value = 10,
+							type = rpg.PHYSICAL
+						})
+					end
+				end
+	
+			else
+				local firebone = spine.get_go(self.spineurl, "fireposition")
+				local fireposition = go.get_world_position(firebone)
+				fireposition.z = fireposition.z + 10
+	
+				local pos = go.get_position(self.router.target_id)
+				self.router.target_pos = pos
+				M.check_direction(self)
+				M.model_flip(self)
+	
+				if pos and fireposition then
+					pos.y = pos.y + 50
+					-- local angle = -math.atan2(pos.x - fireposition.x, pos.y - fireposition.y)
+					-- local quat = vmath.quat_rotation_z(angle)
+					-- local direction = vmath.rotate(quat, vmath.vector3(0, 1, 0))
+					local direction = vmath.normalize(pos - fireposition)
+	
+					local id = factory.create(self.bullet, fireposition, nil, {
+						speed = 650,
+						direction = direction,
+						damage = 1,
+						type = rpg.MAGIC 
+					})
+	
+					--  add a light source to bullet
+					local l = factory.create("/fx/fx#light", vmath.vector3(), nil, nil, vmath.vector3(0.3, 0.3, 1))
+					go.animate(l, "scale", go.PLAYBACK_ONCE_FORWARD, vmath.vector3(3, 3, 1), go.EASING_LINEAR, 0.2)
+					go.set_parent(l, id)
+	
+					print("fire!", self.bullet)
+				end
+			end
+		end
+	elseif message_id == spine_animation_done then
+		self.special = false
+		self.state = M.NONE
+	end
+end
 
 local custom_easing_value = {0, 1, 1, 1, 0}
 local custom_easing = vmath.vector(custom_easing_value)
@@ -184,11 +249,7 @@ function M.change_state(self, state, options)
 		self.vel.y = 0
 		--spine.set_constant(self.spineurl, "tint", vmath.vector4(1, 0, 0, 1))
 		go.animate(self.spineurl, "tint", go.PLAYBACK_ONCE_FORWARD, vmath.vector4(80, 80, 80, 4), custom_easing, 0.2)
-		spine.play_anim(self.spineurl, "hit", go.PLAYBACK_ONCE_FORWARD, { blend_duration = 0.25, playback_rate = 1 },
-			function()
-				self.special = false
-				self.state = M.NONE
-			end)
+		spine.play_anim(self.spineurl, "hit", go.PLAYBACK_ONCE_FORWARD, { blend_duration = 0.25, playback_rate = 1 }, spine_cb)
 		reset()
 
 	elseif state == M.DIE and self.state ~= M.DIE then 
@@ -206,20 +267,18 @@ function M.change_state(self, state, options)
 		--go.animate(self.spineurl, "tint", go.PLAYBACK_ONCE_PINGPONG, vmath.vector4(1, 0, 1, 4), go.EASING_LINEAR, 0.25)
 		go.animate(self.spineurl, "tint", go.PLAYBACK_ONCE_FORWARD, vmath.vector4(80, 80, 80, 4), custom_easing, 0.2)
 		spine.play_anim(self.spineurl, "die", go.PLAYBACK_ONCE_FORWARD, { blend_duration = 0.25, playback_rate = 1 },
-			function()
-				self.special = false
-				--self.state = M.NONE
+			function(self, message_id, message, sender)
+				if message_id == spine_animation_done then
+					self.special = false
+					--self.state = M.NONE
+				end
 			end)
 		reset()
 
 	elseif state == M.ATTACK and self.state ~= M.ATTACK then 
 		self.state = M.ATTACK
 		local anim = {"attack"}
-		spine.play_anim(self.spineurl, anim[math.random(#anim)], go.PLAYBACK_ONCE_FORWARD, { blend_duration = 0.1, playback_rate = 1 },
-			function()
-				self.special = false
-				self.state = M.NONE
-			end)
+		spine.play_anim(self.spineurl, anim[math.random(#anim)], go.PLAYBACK_ONCE_FORWARD, { blend_duration = 0.1, playback_rate = 1 }, spine_cb)
 		reset()
 
 	end

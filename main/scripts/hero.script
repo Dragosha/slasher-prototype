@@ -34,7 +34,6 @@ local COLLISION_RESPONSE = hash("collision_response")
 local CONTACT_POINT_RESPONSE = hash("contact_point_response")
 local TRIGGER_RESPONSE = hash("trigger_response")
 
-local SPINE_EVENT = hash("spine_event")
 local SPLASH = hash("splash")
 local ENEMY = hash("enemy")
 local TRIGGERS = hash("triggers")
@@ -106,12 +105,59 @@ end
 local custom_easing_value = { 0, 1, 1, 1, 0, 1, 1, 1, 0 }
 local custom_easing = vmath.vector(custom_easing_value)
 
-local function change_state(self,state)
+local spine_animation_done = hash("spine_animation_done")
+local spine_event = hash("spine_event")
 
-	local function complete(self)
-		self.special = false
-		self.state = NONE
+local function spine_cb(self, message_id, message, sender)
+	if message_id == spine_event then
+		local m = {}
+		if message.event_id == SPLASH then
+			for k, v in pairs( self.monsters_around ) do
+				local pos = go.get_position(k)
+				if 	pos.x > self.position.x and self.direction == RIGHT or
+					pos.x < self.position.x and self.direction == LEFT then
+					table.insert( m, 1, k )
+				end
+			end
+			
+			if #m > 0 then
+				local monster_id = m[math.random( 1, #m)]
+				msg.post(monster_id, param.DODAMAGE, {
+					hero_id = self.hero_id,
+					id = go.get_id(),
+					value = 10 + self.combo * 10,
+					type = rpg.PHYSICAL,
+				})
+				
+				self.lastTarget = monster_id
+				
+			else
+				self.combo=0
+			end
+		end
+	elseif message_id == spine_animation_done then
+		-- something wrong with animation done event???
+		-- let's setup manual timer instead
+
+		-- print(message_id, self.state)
+		-- self.special = false
+		-- self.state = NONE
 	end
+end
+local function done(self)
+	self.state = NONE
+	self.special = false
+	self.timer_handle = nil
+end
+
+local function set_timer(self, delay, fn)
+	if self.timer_handle then 
+		timer.cancel(self.timer_handle)
+	end
+	self.timer_handle = timer.delay(delay, false, fn)
+end
+
+local function change_state(self,state)
 
 	if self.state ~= state then particlefx.stop("#dust") end
 	if state == WALK and self.state ~= WALK then 
@@ -131,58 +177,30 @@ local function change_state(self,state)
 		self.state = DODGE
 		particlefx.play("#dust")
 		local playback = self.backward and go.PLAYBACK_ONCE_BACKWARD or go.PLAYBACK_ONCE_FORWARD
-		spine.play_anim(self.model, "dodge", playback, { blend_duration = 0.25, playback_rate = 1.5 }, complete)
+		spine.play_anim(self.model, "dodge", playback, { blend_duration = 0.25, playback_rate = 1.5 }, spine_cb)
+		set_timer(self, 27/(30*1.5), done)
 
 	elseif state == DASH and self.state ~= DASH then 
 		self.state = DASH
-		spine.play_anim(self.model, "dash", go.PLAYBACK_ONCE_FORWARD, { blend_duration = 0.25, playback_rate = 1 }, complete)
+		spine.play_anim(self.model, "dash", go.PLAYBACK_ONCE_FORWARD, { blend_duration = 0.25, playback_rate = 1 }, spine_cb)
 
 	elseif state == HIT and self.state ~= HIT then 
 		self.state = HIT
 		go.animate(self.model, "tint", go.PLAYBACK_ONCE_FORWARD, vmath.vector4(1, 0, 0, 4), custom_easing, .3)
-		spine.play_anim(self.model, "hit", go.PLAYBACK_ONCE_FORWARD, { blend_duration = 0.1, playback_rate = 1.1 }, complete)
+		spine.play_anim(self.model, "hit", go.PLAYBACK_ONCE_FORWARD, { blend_duration = 0.1, playback_rate = 1 }, spine_cb)
+		set_timer(self, 20/30, done)
 
 	elseif state == SLASH and self.state ~= SLASH then 
 		self.state = SLASH
-		local anims = { "slash", "jerk", "kick", "slash" }
+		local anims = { "slash", "jog", "kick", "slash" }
 		local anim = anims[math.random(#anims)]
 		if self.combo > 3 then 
 			anim = "powerslash"
 		end
 
-		spine.play_anim(self.model, anim, go.PLAYBACK_ONCE_FORWARD, { blend_duration = 0.1, playback_rate = 1.1 }, complete)
-	end
-
-end
-
-----
-local function on_spine_event(self, message)
-
-	--print(message.event_id)
-	local m = {}
-	if message.event_id == SPLASH then
-		for k, v in pairs( self.monsters_around ) do
-			local pos = go.get_position(k)
-			if 	pos.x > self.position.x and self.direction == RIGHT or
-				pos.x < self.position.x and self.direction == LEFT then
-				table.insert( m, 1, k )
-			end
-		end
-	end
-	
-	if #m > 0 then
-		local monster_id = m[math.random( 1, #m)]
-		msg.post(monster_id, param.DODAMAGE, {
-			hero_id = self.hero_id,
-			id = go.get_id(),
-			value = 10 + self.combo * 10,
-			type = rpg.PHYSICAL,
-			})
-
-		self.lastTarget = monster_id
-
-	else
-		self.combo=0
+		spine.play_anim(self.model, anim, go.PLAYBACK_ONCE_FORWARD, { blend_duration = 0.1, playback_rate = 1 }, spine_cb)
+		local at = {slash = 19, powerslash = 23, kick = 20, jog = 18} -- frames per animation
+		set_timer(self, (at[anim] or 20)/30, done)
 	end
 
 end
@@ -205,7 +223,8 @@ local function on_damage_event(self, message)
 end
 
 ----
-function update(self, dt)
+-- function update(self, dt)
+function fixed_update(self, dt)
 
 	local walking = false
 	local pushing = false
@@ -458,9 +477,6 @@ function on_message(self, message_id, message, sender)
 			self.triggers[message.other_id] = message.enter and true or nil
 		end
 		
-
-	elseif message_id == SPINE_EVENT then
-		on_spine_event(self,message)
 
 	elseif message_id == param.DODAMAGE then
 		on_damage_event(self, message)

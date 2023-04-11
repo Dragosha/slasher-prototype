@@ -32,7 +32,8 @@ function final(self)
 	end
 end
 
-function update(self, dt)
+-- function update(self, dt)
+function fixed_update(self, dt)
 	local pos = go.get_position()
 	
 	pos = pos + self.direction * self.speed * dt
