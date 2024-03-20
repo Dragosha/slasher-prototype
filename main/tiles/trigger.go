@@ -39,6 +39,7 @@ embedded_components {
   "    }\n"
   "    index: 0\n"
   "    count: 3\n"
+  "    id: \"\"\n"
   "  }\n"
   "  data: 50.4\n"
   "  data: 81.8235\n"
@@ -64,10 +65,13 @@ embedded_components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "tile_set: \"/assets/rgba/tiles.atlas\"\n"
-  "default_animation: \"circlebutton\"\n"
+  data: "default_animation: \"circlebutton\"\n"
   "material: \"/assets/materials/oversprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
+  "textures {\n"
+  "  sampler: \"texture_sampler\"\n"
+  "  texture: \"/assets/rgba/tiles.atlas\"\n"
+  "}\n"
   ""
   position {
     x: 0.0
@@ -88,12 +92,6 @@ embedded_components {
   "  x: 128.0\n"
   "  y: 32.0\n"
   "  z: 0.0\n"
-  "  w: 0.0\n"
-  "}\n"
-  "scale {\n"
-  "  x: 1.1\n"
-  "  y: 1.1\n"
-  "  z: 1.0\n"
   "  w: 0.0\n"
   "}\n"
   "color {\n"
@@ -133,5 +131,10 @@ embedded_components {
     y: 0.0
     z: 0.0
     w: 1.0
+  }
+  scale {
+    x: 1.1
+    y: 1.1
+    z: 1.0
   }
 }
