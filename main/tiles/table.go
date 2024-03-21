@@ -26,6 +26,7 @@ embedded_components {
   "    }\n"
   "    index: 0\n"
   "    count: 3\n"
+  "    id: \"\"\n"
   "  }\n"
   "  data: 127.6615\n"
   "  data: 45.1145\n"
@@ -51,10 +52,13 @@ embedded_components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "tile_set: \"/assets/rgba/tiles.atlas\"\n"
-  "default_animation: \"stuff3_B\"\n"
+  data: "default_animation: \"stuff3_B\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
+  "textures {\n"
+  "  sampler: \"texture_sampler\"\n"
+  "  texture: \"/assets/rgba/tiles.atlas\"\n"
+  "}\n"
   ""
   position {
     x: 0.0
@@ -71,10 +75,13 @@ embedded_components {
 embedded_components {
   id: "sprite1"
   type: "sprite"
-  data: "tile_set: \"/assets/rgba/tiles.atlas\"\n"
-  "default_animation: \"stuff3_A\"\n"
+  data: "default_animation: \"stuff3_A\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
+  "textures {\n"
+  "  sampler: \"texture_sampler\"\n"
+  "  texture: \"/assets/rgba/tiles.atlas\"\n"
+  "}\n"
   ""
   position {
     x: 0.0
