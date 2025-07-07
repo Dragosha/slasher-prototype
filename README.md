@@ -8,6 +8,11 @@ LUA. Defold engine.
 ## HTML5 demo
 Try here: [demo](https://dragosha.github.io/slasher-prototype/)
 
+
+> [!WARNING]
+> Please update 'Spine extension' dependence to [actual version](https://github.com/defold/extension-spine/releases) before open the project in Defold editor. To make this: open `game.project` file in any text editor and change the path `dependencies#3 = https://github.com/defold/extension-spine/archive/refs/tags/3.8.3.zip` depending on the version of your Defold editor.
+
+
 ## Code
 **Used dependencies:**
 * Defold-input (by britzl)

@@ -6,7 +6,6 @@ attribute mediump vec3 normal;
 
 uniform mediump mat4 mtx_view;
 uniform mediump mat4 mtx_proj;
-uniform mediump mat4 mtx_normal;
 
 varying mediump vec2 var_texcoord0;
 

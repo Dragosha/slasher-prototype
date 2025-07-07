@@ -12,7 +12,7 @@ local scene = require "main.scene"
 local broadcast = require "ludobits.m.broadcast"
 
 
-function load_complete(self, url, result)
+local function load_complete(self, url, result)
 	-- Loading is complete, resources are ready to spawn
 
 	self.ids = collectionfactory.create(url)
@@ -27,7 +27,7 @@ function load_complete(self, url, result)
 	-- Iterates all objects in collection and corrects their Z-coordinate 
 	-- based on Y-coordinate: pos.z = pos.z + (pos.y / param.kY) * param.kZ
 	for k, v in pairs( self.ids ) do
-		if v ~= back and v ~= cam and v ~= colider then 
+		if v ~= back and v ~= cam and v ~= colider then
 			local pos = go.get_position(v)
 			local p = go.get_world_position(v)
 			pos.z = pos.z + (pos.y / param.kY) * param.kZ
@@ -53,13 +53,13 @@ function load_complete(self, url, result)
 		end)
 end
 
-function load(self, name, target)
+local function load(self, name, target)
 	self.name = name
 	self.target = target
 	collectionfactory.load(name, load_complete)
 end
 
-function unload(self)
+local function unload(self)
 	go.delete(self.ids, true)
 	collectionfactory.unload(self.name)
 

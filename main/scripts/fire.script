@@ -1,4 +1,0 @@
-function init(self)
-	sprite.play_flipbook(url, id)
-end
-
