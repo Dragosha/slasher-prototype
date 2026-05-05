@@ -1,7 +1,7 @@
 ![](slasher.jpg)
 
 # slasher-prototype
-Game prototype. 2.5D perspective view. Levels loader, the hero controller, monsters and basic AI logic.
+Game prototype. 2.5D perspective view. Levels loader, a hero controller, monsters and very basic AI logic.
 Gamepad and keyboard binding supported.
 LUA. Defold engine.
 
@@ -16,7 +16,6 @@ Try here: [demo](https://dragosha.github.io/slasher-prototype/)
 ## Code
 **Used dependencies:**
 * Defold-input (by britzl)
-* Rendercam (by rgrams)
 * ludobits (by britzl)
 
 ## Level design

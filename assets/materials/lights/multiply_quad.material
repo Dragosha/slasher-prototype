@@ -3,12 +3,8 @@ tags: "quad"
 vertex_program: "/assets/materials/lights/quad.vp"
 fragment_program: "/assets/materials/lights/multiply.fp"
 vertex_constants {
-  name: "mtx_view"
-  type: CONSTANT_TYPE_VIEW
-}
-vertex_constants {
-  name: "mtx_proj"
-  type: CONSTANT_TYPE_PROJECTION
+  name: "mtx_viewproj"
+  type: CONSTANT_TYPE_VIEWPROJ
 }
 fragment_constants {
   name: "tint0"

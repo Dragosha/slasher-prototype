@@ -1,4 +1,3 @@
-local cam = require "rendercam.rendercam"
 local param = require "main.param"
 local scene = require "main.scene"
 local broadcast = require "ludobits.m.broadcast"

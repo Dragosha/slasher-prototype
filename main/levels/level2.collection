@@ -5,18 +5,6 @@ instances {
   position {
     x: 893.0
     y: -222.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
@@ -25,18 +13,6 @@ instances {
   position {
     x: 790.0
     y: 181.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
@@ -45,18 +21,6 @@ instances {
   position {
     x: 692.0
     y: -235.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
@@ -65,18 +29,6 @@ instances {
   position {
     x: -471.0
     y: -221.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
@@ -85,18 +37,6 @@ instances {
   position {
     x: 674.0
     y: 40.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
@@ -105,18 +45,6 @@ instances {
   position {
     x: -196.0
     y: 190.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
@@ -125,18 +53,6 @@ instances {
   position {
     x: 148.0
     y: -195.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
@@ -145,18 +61,6 @@ instances {
   position {
     x: 1426.0
     y: 119.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
@@ -165,18 +69,6 @@ instances {
   position {
     x: 678.0
     y: 160.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
@@ -185,18 +77,6 @@ instances {
   position {
     x: 904.0
     y: -19.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
@@ -205,18 +85,6 @@ instances {
   position {
     x: -404.0
     y: 76.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
@@ -225,18 +93,6 @@ instances {
   position {
     x: 1186.0
     y: 29.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
@@ -245,18 +101,6 @@ instances {
   position {
     x: 1674.0
     y: -126.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
@@ -265,13 +109,6 @@ instances {
   position {
     x: -317.0
     y: 263.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
   }
   component_properties {
     id: "trigger"
@@ -286,11 +123,6 @@ instances {
       type: PROPERTY_TYPE_HASH
     }
   }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
 }
 instances {
   id: "trigger1"
@@ -298,13 +130,6 @@ instances {
   position {
     x: 660.0
     y: 267.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
   }
   component_properties {
     id: "trigger"
@@ -314,11 +139,6 @@ instances {
       type: PROPERTY_TYPE_NUMBER
     }
   }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
 }
 instances {
   id: "startpoint"
@@ -326,18 +146,6 @@ instances {
   position {
     x: -339.0
     y: -18.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
@@ -346,38 +154,17 @@ instances {
   position {
     x: 1546.0
     y: 59.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 instances {
   id: "aura"
   prototype: "/main/tiles/aura.go"
   position {
-    x: 0.0
-    y: 0.0
     z: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
   }
   scale3 {
     x: 0.808
     y: 6.821
-    z: 1.0
   }
 }
 collection_instances {
@@ -386,13 +173,6 @@ collection_instances {
   position {
     x: 1042.0
     y: 18.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
   }
   instance_properties {
     id: "monster"
@@ -410,11 +190,6 @@ collection_instances {
       }
     }
   }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
 }
 collection_instances {
   id: "skeleton1"
@@ -422,13 +197,6 @@ collection_instances {
   position {
     x: 306.0
     y: -142.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
   }
   instance_properties {
     id: "monster"
@@ -440,11 +208,6 @@ collection_instances {
         type: PROPERTY_TYPE_VECTOR3
       }
     }
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 collection_instances {
@@ -453,13 +216,6 @@ collection_instances {
   position {
     x: 438.0
     y: 86.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
   }
   instance_properties {
     id: "monster"
@@ -472,11 +228,6 @@ collection_instances {
       }
     }
   }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
 }
 scale_along_z: 0
 embedded_instances {
@@ -484,37 +235,8 @@ embedded_instances {
   data: "components {\n"
   "  id: \"main\"\n"
   "  component: \"/main/scripts/main.script\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
-  "  property_decls {\n"
-  "  }\n"
   "}\n"
   ""
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
 }
 embedded_instances {
   id: "background"
@@ -522,20 +244,11 @@ embedded_instances {
   children: "laura"
   data: ""
   position {
-    x: 0.0
-    y: 0.0
     z: -100.0
   }
   rotation {
     x: -0.17364818
-    y: 0.0
-    z: 0.0
     w: 0.9848077
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -558,22 +271,6 @@ embedded_instances {
   children: "waypoint7"
   children: "waypoint8"
   data: ""
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
 }
 embedded_instances {
   id: "back"
@@ -587,41 +284,13 @@ embedded_instances {
   data: ""
   position {
     x: -2.0
-    y: 0.0
     z: -0.1
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 embedded_instances {
   id: "foreground"
   children: "chandelier"
   data: ""
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
 }
 embedded_instances {
   id: "background2"
@@ -630,22 +299,13 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgwooden1b\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: -37.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -653,7 +313,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgwooden1b\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -662,13 +321,6 @@ embedded_instances {
   "  position {\n"
   "    x: 467.0\n"
   "    y: -35.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -676,7 +328,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgstone1b\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -685,13 +336,6 @@ embedded_instances {
   "  position {\n"
   "    x: -469.0\n"
   "    y: -35.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -699,7 +343,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgwooden1b\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -708,13 +351,6 @@ embedded_instances {
   "  position {\n"
   "    x: 934.0\n"
   "    y: -37.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -722,7 +358,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgstone1b\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -731,13 +366,6 @@ embedded_instances {
   "  position {\n"
   "    x: 1398.0\n"
   "    y: -35.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -745,7 +373,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgwooden1b\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -754,31 +381,11 @@ embedded_instances {
   "  position {\n"
   "    x: 1865.0\n"
   "    y: -37.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   ""
   position {
-    x: 0.0
     y: -284.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -788,29 +395,19 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"stuff2\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: 85.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
-  "  data: \"collision_shape: \\\"\\\"\\n"
-  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
+  "  data: \"type: COLLISION_OBJECT_TYPE_STATIC\\n"
   "mass: 0.0\\n"
   "friction: 0.1\\n"
   "restitution: 0.5\\n"
@@ -823,55 +420,22 @@ embedded_instances {
   "    position {\\n"
   "      x: -5.0\\n"
   "      y: 17.617\\n"
-  "      z: 0.0\\n"
   "    }\\n"
   "    rotation {\\n"
-  "      x: 0.0\\n"
-  "      y: 0.0\\n"
-  "      z: 0.0\\n"
-  "      w: 1.0\\n"
   "    }\\n"
   "    index: 0\\n"
   "    count: 3\\n"
-  "    id: \\\"\\\"\\n"
   "  }\\n"
   "  data: 93.783\\n"
   "  data: 28.823\\n"
   "  data: 0.052\\n"
   "}\\n"
-  "linear_damping: 0.0\\n"
-  "angular_damping: 0.0\\n"
-  "locked_rotation: false\\n"
-  "bullet: false\\n"
   "\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
   "}\n"
   ""
   position {
     x: 319.0
     y: 272.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -881,29 +445,19 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"stuff1\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: 84.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
-  "  data: \"collision_shape: \\\"\\\"\\n"
-  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
+  "  data: \"type: COLLISION_OBJECT_TYPE_STATIC\\n"
   "mass: 0.0\\n"
   "friction: 0.1\\n"
   "restitution: 0.5\\n"
@@ -916,55 +470,22 @@ embedded_instances {
   "    position {\\n"
   "      x: -5.0\\n"
   "      y: 17.617\\n"
-  "      z: 0.0\\n"
   "    }\\n"
   "    rotation {\\n"
-  "      x: 0.0\\n"
-  "      y: 0.0\\n"
-  "      z: 0.0\\n"
-  "      w: 1.0\\n"
   "    }\\n"
   "    index: 0\\n"
   "    count: 3\\n"
-  "    id: \\\"\\\"\\n"
   "  }\\n"
   "  data: 93.783\\n"
   "  data: 28.4075\\n"
   "  data: 0.052\\n"
   "}\\n"
-  "linear_damping: 0.0\\n"
-  "angular_damping: 0.0\\n"
-  "locked_rotation: false\\n"
-  "bullet: false\\n"
   "\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
   "}\n"
   ""
   position {
     x: 146.0
     y: 273.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -974,40 +495,19 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"stoneblock2\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: 95.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   ""
   position {
     x: 1095.0
     y: 273.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -1017,22 +517,13 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgwooden1\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: -151.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -1040,7 +531,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgwooden1\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -1049,13 +539,6 @@ embedded_instances {
   "  position {\n"
   "    x: 467.0\n"
   "    y: -151.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -1063,7 +546,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgstone2\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -1072,13 +554,6 @@ embedded_instances {
   "  position {\n"
   "    x: -469.0\n"
   "    y: -151.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -1086,7 +561,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgwooden1\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -1095,13 +569,6 @@ embedded_instances {
   "  position {\n"
   "    x: 935.0\n"
   "    y: -151.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -1109,22 +576,13 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgwooden1\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: 152.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -1132,7 +590,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgwooden1\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -1141,13 +598,6 @@ embedded_instances {
   "  position {\n"
   "    x: 467.0\n"
   "    y: 152.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -1155,7 +605,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgstone2\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -1164,13 +613,6 @@ embedded_instances {
   "  position {\n"
   "    x: -469.0\n"
   "    y: 152.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -1178,7 +620,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgwooden1\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -1187,13 +628,6 @@ embedded_instances {
   "  position {\n"
   "    x: 935.0\n"
   "    y: 152.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -1201,7 +635,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgwooden1\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -1210,13 +643,6 @@ embedded_instances {
   "  position {\n"
   "    x: 1865.0\n"
   "    y: -151.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -1224,7 +650,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgstone2\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -1233,13 +658,6 @@ embedded_instances {
   "  position {\n"
   "    x: 1396.0\n"
   "    y: -151.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -1247,7 +665,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgwooden1\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -1256,13 +673,6 @@ embedded_instances {
   "  position {\n"
   "    x: 1865.0\n"
   "    y: 152.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -1270,7 +680,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"bgstone2\\\"\\n"
   "material: \\\"/assets/materials/bgsprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -1279,32 +688,9 @@ embedded_instances {
   "  position {\n"
   "    x: 1396.0\n"
   "    y: 152.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   ""
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
 }
 embedded_instances {
   id: "go23"
@@ -1314,40 +700,19 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"house1\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: 204.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   ""
   position {
     x: 709.0
     y: 268.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -1358,40 +723,19 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"house1\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: 204.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   ""
   position {
     x: -260.0
     y: 268.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -1401,29 +745,19 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"stoneblock3\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: 103.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
-  "  data: \"collision_shape: \\\"\\\"\\n"
-  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
+  "  data: \"type: COLLISION_OBJECT_TYPE_STATIC\\n"
   "mass: 0.0\\n"
   "friction: 0.1\\n"
   "restitution: 0.5\\n"
@@ -1434,57 +768,23 @@ embedded_instances {
   "  shapes {\\n"
   "    shape_type: TYPE_BOX\\n"
   "    position {\\n"
-  "      x: 0.0\\n"
   "      y: 26.617\\n"
-  "      z: 0.0\\n"
   "    }\\n"
   "    rotation {\\n"
-  "      x: 0.0\\n"
-  "      y: 0.0\\n"
-  "      z: 0.0\\n"
-  "      w: 1.0\\n"
   "    }\\n"
   "    index: 0\\n"
   "    count: 3\\n"
-  "    id: \\\"\\\"\\n"
   "  }\\n"
   "  data: 65.791\\n"
   "  data: 26.3185\\n"
   "  data: 0.05\\n"
   "}\\n"
-  "linear_damping: 0.0\\n"
-  "angular_damping: 0.0\\n"
-  "locked_rotation: false\\n"
-  "bullet: false\\n"
   "\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
   "}\n"
   ""
   position {
     x: 1855.0
     y: -242.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -1492,8 +792,7 @@ embedded_instances {
   data: "embedded_components {\n"
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
-  "  data: \"collision_shape: \\\"\\\"\\n"
-  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
+  "  data: \"type: COLLISION_OBJECT_TYPE_STATIC\\n"
   "mass: 0.0\\n"
   "friction: 0.1\\n"
   "restitution: 0.5\\n"
@@ -1505,69 +804,43 @@ embedded_instances {
   "    shape_type: TYPE_BOX\\n"
   "    position {\\n"
   "      x: 2149.313\\n"
-  "      y: 0.0\\n"
-  "      z: 0.0\\n"
   "    }\\n"
   "    rotation {\\n"
-  "      x: 0.0\\n"
-  "      y: 0.0\\n"
-  "      z: 0.0\\n"
-  "      w: 1.0\\n"
   "    }\\n"
   "    index: 0\\n"
   "    count: 3\\n"
-  "    id: \\\"\\\"\\n"
   "  }\\n"
   "  shapes {\\n"
   "    shape_type: TYPE_BOX\\n"
   "    position {\\n"
   "      x: -748.894\\n"
-  "      y: 0.0\\n"
-  "      z: 0.0\\n"
   "    }\\n"
   "    rotation {\\n"
-  "      x: 0.0\\n"
-  "      y: 0.0\\n"
-  "      z: 0.0\\n"
-  "      w: 1.0\\n"
   "    }\\n"
   "    index: 3\\n"
   "    count: 3\\n"
-  "    id: \\\"\\\"\\n"
   "  }\\n"
   "  shapes {\\n"
   "    shape_type: TYPE_BOX\\n"
   "    position {\\n"
   "      x: 725.527\\n"
   "      y: -337.403\\n"
-  "      z: 0.0\\n"
   "    }\\n"
   "    rotation {\\n"
-  "      x: 0.0\\n"
-  "      y: 0.0\\n"
-  "      z: 0.0\\n"
-  "      w: 1.0\\n"
   "    }\\n"
   "    index: 6\\n"
   "    count: 3\\n"
-  "    id: \\\"\\\"\\n"
   "  }\\n"
   "  shapes {\\n"
   "    shape_type: TYPE_BOX\\n"
   "    position {\\n"
   "      x: 725.527\\n"
   "      y: 333.852\\n"
-  "      z: 0.0\\n"
   "    }\\n"
   "    rotation {\\n"
-  "      x: 0.0\\n"
-  "      y: 0.0\\n"
-  "      z: 0.0\\n"
-  "      w: 1.0\\n"
   "    }\\n"
   "    index: 9\\n"
   "    count: 3\\n"
-  "    id: \\\"\\\"\\n"
   "  }\\n"
   "  data: 50.0\\n"
   "  data: 365.7595\\n"
@@ -1582,40 +855,9 @@ embedded_instances {
   "  data: 50.0\\n"
   "  data: 0.05\\n"
   "}\\n"
-  "linear_damping: 0.0\\n"
-  "angular_damping: 0.0\\n"
-  "locked_rotation: false\\n"
-  "bullet: false\\n"
   "\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
   "}\n"
   ""
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
 }
 embedded_instances {
   id: "go3"
@@ -1624,29 +866,19 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"stuff2\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: 85.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
-  "  data: \"collision_shape: \\\"\\\"\\n"
-  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
+  "  data: \"type: COLLISION_OBJECT_TYPE_STATIC\\n"
   "mass: 0.0\\n"
   "friction: 0.1\\n"
   "restitution: 0.5\\n"
@@ -1659,55 +891,23 @@ embedded_instances {
   "    position {\\n"
   "      x: -5.0\\n"
   "      y: 17.617\\n"
-  "      z: 0.0\\n"
   "    }\\n"
   "    rotation {\\n"
-  "      x: 0.0\\n"
-  "      y: 0.0\\n"
-  "      z: 0.0\\n"
-  "      w: 1.0\\n"
   "    }\\n"
   "    index: 0\\n"
   "    count: 3\\n"
-  "    id: \\\"\\\"\\n"
   "  }\\n"
   "  data: 93.783\\n"
   "  data: 28.823\\n"
   "  data: 0.052\\n"
   "}\\n"
-  "linear_damping: 0.0\\n"
-  "angular_damping: 0.0\\n"
-  "locked_rotation: false\\n"
-  "bullet: false\\n"
   "\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
   "}\n"
   ""
   position {
     x: 1976.0
     y: 241.0
     z: 0.1
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -1718,40 +918,19 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"house1\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: 204.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   ""
   position {
     x: 1591.0
     y: 268.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -1765,45 +944,24 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"chandelier\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "}\\n"
   "\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
   "}\n"
   "embedded_components {\n"
   "  id: \"sprite1\"\n"
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"chandelier-chain\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: 292.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   ""
@@ -1811,17 +969,6 @@ embedded_instances {
     x: 110.0
     y: 219.0
     z: 200.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -1838,33 +985,13 @@ embedded_instances {
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: 70.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   ""
   position {
     x: 82.0
     y: -4.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -1881,33 +1008,17 @@ embedded_instances {
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: 70.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   ""
   position {
     x: -27.0
     y: -44.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
   }
   scale3 {
     x: 1.328
     y: 1.231
-    z: 1.0
   }
 }
 embedded_instances {
@@ -1924,33 +1035,13 @@ embedded_instances {
   "}\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: 70.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   ""
   position {
     x: -39.0
     y: 57.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -1966,29 +1057,12 @@ embedded_instances {
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
   "}\\n"
   "\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
   "}\n"
   ""
   position {
     x: 113.0
     y: -12.805
     z: 16.732
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
   }
   scale3 {
     x: 5.0
@@ -2003,7 +1077,6 @@ embedded_instances {
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"lightaura_red\\\"\\n"
   "material: \\\"/assets/materials/lights/light.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/rgba/tiles.atlas\\\"\\n"
@@ -2012,13 +1085,6 @@ embedded_instances {
   "  position {\n"
   "    x: -179.0\n"
   "    y: 99.5\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -2035,31 +1101,14 @@ embedded_instances {
   "  position {\n"
   "    x: 186.0\n"
   "    y: 99.5\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   ""
   position {
-    x: 0.0
-    y: 0.0
     z: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
   }
   scale3 {
-    x: 1.0
     y: 2.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -2078,13 +1127,6 @@ embedded_instances {
   "  position {\n"
   "    x: -179.0\n"
   "    y: 99.5\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -2101,31 +1143,14 @@ embedded_instances {
   "  position {\n"
   "    x: 186.0\n"
   "    y: 99.5\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   ""
   position {
-    x: 0.0
-    y: 0.0
     z: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
   }
   scale3 {
-    x: 1.0
     y: 2.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -2144,13 +1169,6 @@ embedded_instances {
   "  position {\n"
   "    x: -179.0\n"
   "    y: 99.5\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -2167,31 +1185,14 @@ embedded_instances {
   "  position {\n"
   "    x: 186.0\n"
   "    y: 99.5\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   ""
   position {
-    x: 0.0
-    y: 0.0
     z: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
   }
   scale3 {
-    x: 1.0
     y: 2.0
-    z: 1.0
   }
 }
 embedded_instances {
@@ -2202,51 +1203,24 @@ embedded_instances {
   "  data: \"size {\\n"
   "  x: 128.0\\n"
   "  y: 32.0\\n"
-  "  z: 0.0\\n"
-  "  w: 0.0\\n"
   "}\\n"
   "color {\\n"
   "  x: 0.8\\n"
   "  y: 0.4\\n"
   "  z: 0.2\\n"
-  "  w: 1.0\\n"
   "}\\n"
   "outline {\\n"
   "  x: 0.3019608\\n"
-  "  y: 0.0\\n"
   "  z: 0.101960786\\n"
-  "  w: 1.0\\n"
   "}\\n"
-  "shadow {\\n"
-  "  x: 0.0\\n"
-  "  y: 0.0\\n"
-  "  z: 0.0\\n"
-  "  w: 1.0\\n"
-  "}\\n"
-  "leading: 1.0\\n"
-  "tracking: 0.0\\n"
   "pivot: PIVOT_W\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
-  "line_break: false\\n"
   "text: \\\"1.1 Controls:\\\"\\n"
   "font: \\\"/builtins/fonts/default.font\\\"\\n"
   "material: \\\"/builtins/fonts/label-df.material\\\"\\n"
   "\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
   "  scale {\n"
   "    x: 1.4\n"
   "    y: 1.4\n"
-  "    z: 1.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -2255,39 +1229,24 @@ embedded_instances {
   "  data: \"size {\\n"
   "  x: 128.0\\n"
   "  y: 32.0\\n"
-  "  z: 0.0\\n"
-  "  w: 0.0\\n"
   "}\\n"
   "color {\\n"
-  "  x: 1.0\\n"
   "  y: 0.8\\n"
   "  z: 0.5019608\\n"
-  "  w: 1.0\\n"
   "}\\n"
   "outline {\\n"
   "  x: 0.3019608\\n"
-  "  y: 0.0\\n"
   "  z: 0.101960786\\n"
-  "  w: 1.0\\n"
-  "}\\n"
-  "shadow {\\n"
-  "  x: 0.0\\n"
-  "  y: 0.0\\n"
-  "  z: 0.0\\n"
-  "  w: 1.0\\n"
   "}\\n"
   "leading: 1.2\\n"
-  "tracking: 0.0\\n"
   "pivot: PIVOT_NW\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
-  "line_break: false\\n"
-  "text: \\\"X - attack\\\\n"
+  "text: \\\"X , SPACE - attack\\\\n"
   "\\\"\\n"
-  "  \\\"C - dodge\\\\n"
+  "  \\\"C, SHIFT - dodge\\\\n"
   "\\\"\\n"
-  "  \\\"Arrows - move\\\\n"
+  "  \\\"Arrows, WASD - move\\\\n"
   "\\\"\\n"
-  "  \\\"A - ambient light\\\\n"
+  "  \\\"ENTER - ambient light\\\\n"
   "\\\"\\n"
   "  \\\"GamePad or Virtual pad\\\\n"
   "\\\"\\n"
@@ -2296,20 +1255,11 @@ embedded_instances {
   "material: \\\"/builtins/fonts/label-df.material\\\"\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
   "    y: -17.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "  scale {\n"
   "    x: 1.2\n"
   "    y: 1.2\n"
-  "    z: 1.0\n"
   "  }\n"
   "}\n"
   ""
@@ -2317,16 +1267,5 @@ embedded_instances {
     x: -358.0
     y: -271.0
     z: 20.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }

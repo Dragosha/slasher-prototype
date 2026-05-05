@@ -9,3 +9,5 @@ Thumbs.db
 .cproject
 builtins
 /.editor_settings
+manifest.private.der
+manifest.public.der

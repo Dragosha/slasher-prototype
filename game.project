@@ -1,14 +1,14 @@
 [project]
 title = Slasher-prototype
-version = 1.3
+version = 1.4
+developer = Dragosha
 dependencies#0 = https://github.com/britzl/defold-input/archive/master.zip
-dependencies#1 = https://github.com/rgrams/rendercam/archive/v1.0.1.zip
-dependencies#2 = https://github.com/britzl/ludobits/archive/6.6.0.zip
-dependencies#3 = https://github.com/defold/extension-spine/archive/refs/tags/3.8.3.zip
+dependencies#1 = https://github.com/britzl/ludobits/archive/6.6.0.zip
+dependencies#2 = https://github.com/defold/extension-spine/archive/refs/tags/4.5.1.zip
 
 [bootstrap]
 main_collection = /main/scene.collectionc
-render = /rendercam_/rendercam_.renderc
+render = /render/render.renderc
 
 [input]
 game_binding = /input/all.input_bindingc
@@ -38,7 +38,7 @@ use_fixed_timestep = 1
 
 [html5]
 cssfile = /builtins/manifests/web/dark_theme.css
-scale_mode = fit
+scale_mode = stretch
 
 [ios]
 bundle_identifier = com.dragosha.slasher

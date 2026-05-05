@@ -1,13 +1,18 @@
-uniform mediump mat4 view_proj;
+#version 140
 
 // positions are in world space
-attribute mediump vec4 position;
-attribute mediump vec2 texcoord0;
+in mediump vec4 position;
+in mediump vec2 texcoord0;
 
-varying mediump vec2 var_texcoord0;
+uniform vs_uniforms
+{
+    mediump mat4 mtx_viewproj;
+};
+
+out mediump vec2 var_texcoord0;
 
 void main()
 {
-    gl_Position = view_proj * vec4(position.xyz, 1.0);
     var_texcoord0 = texcoord0;
+    gl_Position = mtx_viewproj * vec4(position.xyz, 1.0);
 }

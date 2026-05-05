@@ -1,0 +1,446 @@
+-- Copyright 2020-2026 The Defold Foundation
+-- Copyright 2014-2020 King
+-- Copyright 2009-2014 Ragnar Svensson, Christian Murray
+-- Licensed under the Defold License version 1.0 (the "License"); you may not use
+-- this file except in compliance with the License.
+--
+-- You may obtain a copy of the License, together with FAQs at
+-- https://www.defold.com/license
+--
+-- Unless required by applicable law or agreed to in writing, software distributed
+-- under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+-- CONDITIONS OF ANY KIND, either express or implied. See the License for the
+-- specific language governing permissions and limitations under the License.
+
+--
+-- message constants
+--
+local MSG_CLEAR_COLOR =         hash("clear_color")
+local MSG_WINDOW_RESIZED =      hash("window_resized")
+local MSG_SET_VIEW_PROJ =       hash("set_view_projection")
+local MSG_SET_CAMERA_PROJ =     hash("use_camera_projection")
+local MSG_USE_STRETCH_PROJ =    hash("use_stretch_projection")
+local MSG_USE_FIXED_PROJ =      hash("use_fixed_projection")
+local MSG_USE_FIXED_FIT_PROJ =  hash("use_fixed_fit_projection")
+
+local DEFAULT_NEAR = -1
+local DEFAULT_FAR =   1
+local DEFAULT_ZOOM =  1
+
+--
+-- projection that centers content with maintained aspect ratio and optional zoom
+--
+local function get_fixed_projection(camera, state)
+    camera.zoom = camera.zoom or DEFAULT_ZOOM
+    local projected_width = state.window_width / camera.zoom
+    local projected_height = state.window_height / camera.zoom
+    local left = -(projected_width - state.width) / 2
+    local bottom = -(projected_height - state.height) / 2
+    local right = left + projected_width
+    local top = bottom + projected_height
+    return vmath.matrix4_orthographic(left, right, bottom, top, camera.near, camera.far)
+end
+--
+-- projection that centers and fits content with maintained aspect ratio
+--
+local function get_fixed_fit_projection(camera, state)
+    camera.zoom = math.min(state.window_width / state.width, state.window_height / state.height)
+    return get_fixed_projection(camera, state)
+end
+--
+-- projection that stretches content
+--
+local function get_stretch_projection(camera, state)
+    return vmath.matrix4_orthographic(0, state.width, 0, state.height, camera.near, camera.far)
+end
+--
+-- projection for gui
+--
+local function get_gui_projection(camera, state)
+    return vmath.matrix4_orthographic(0, state.window_width, 0, state.window_height, camera.near, camera.far)
+end
+
+local function update_clear_color(state, color)
+    if color then
+        state.clear_buffers[graphics.BUFFER_TYPE_COLOR0_BIT] = color
+    end
+end
+
+local function update_camera(camera, state)
+    if camera.projection_fn then
+        camera.proj = camera.projection_fn(camera, state)
+        camera.options.frustum = camera.proj * camera.view
+    end
+end
+
+local function update_state(state)
+    state.window_width = render.get_window_width()
+    state.window_height = render.get_window_height()
+    state.valid = state.window_width > 0 and state.window_height > 0
+    if not state.valid then
+        return false
+    end
+    -- Make sure state updated only once when resize window
+    if state.window_width == state.prev_window_width and state.window_height == state.prev_window_height then
+        return true
+    end
+    state.prev_window_width = state.window_width
+    state.prev_window_height = state.window_height
+    state.width = render.get_width()
+    state.height = render.get_height()
+    for _, camera in pairs(state.cameras) do
+        update_camera(camera, state)
+    end
+    return true
+end
+
+local function init_camera(camera, projection_fn, near, far, zoom)
+    camera.view = vmath.matrix4()
+    camera.near = near == nil and DEFAULT_NEAR or near
+    camera.far = far == nil and DEFAULT_FAR or far
+    camera.zoom = zoom == nil and DEFAULT_ZOOM or zoom
+    camera.projection_fn = projection_fn
+end
+
+local function create_predicates(...)
+    local arg = {...}
+    local predicates = {}
+    for _, predicate_name in pairs(arg) do
+        predicates[predicate_name] = render.predicate({predicate_name})
+    end
+    return predicates
+end
+
+local function create_camera(state, name, is_main_camera)
+    local camera = {}
+    camera.options = {}
+    state.cameras[name] = camera
+    if is_main_camera then
+        state.main_camera = camera
+    end
+    return camera
+end
+
+local function create_state()
+    local state = {}
+    local color = vmath.vector4(0, 0, 0, 0)
+    color.x = sys.get_config_number("render.clear_color_red", 0)
+    color.y = sys.get_config_number("render.clear_color_green", 0)
+    color.z = sys.get_config_number("render.clear_color_blue", 0)
+    color.w = sys.get_config_number("render.clear_color_alpha", 0)
+    state.clear_buffers = {
+        [graphics.BUFFER_TYPE_COLOR0_BIT] = color,
+        [graphics.BUFFER_TYPE_DEPTH_BIT] = 1,
+        [graphics.BUFFER_TYPE_STENCIL_BIT] = 0
+    }
+    state.cameras = {}
+    return state
+end
+
+local function set_camera_world(state)
+    local camera_components = camera.get_cameras()
+
+    -- This will set the last enabled camera from the stack of camera components
+    if #camera_components > 0 then
+        for i = #camera_components, 1, -1 do
+            if camera.get_enabled(camera_components[i]) then
+                local camera_component = state.cameras.camera_component
+                camera_component.camera = camera_components[i]
+                render.set_camera(camera_component.camera, { use_frustum = true })
+                -- The frustum will be overridden by the render.set_camera call,
+                -- so we don't need to return anything here other than an empty table.
+                return camera_component.options
+            end
+        end
+    end
+
+    -- If no active camera was found, we use the default main "camera world" camera
+    local camera_world = state.cameras.camera_world
+    render.set_view(camera_world.view)
+    render.set_projection(camera_world.proj)
+    return camera_world.options
+end
+
+local function reset_camera_world(state)
+    -- unbind the camera if a camera component is used
+    if state.cameras.camera_component.camera then
+        state.cameras.camera_component.camera = nil
+        render.set_camera()
+    end
+end
+
+-------------------------------------------------
+local IDENTITY_MATRIX = vmath.matrix4()
+local rt_list = {}
+local BLACK = vmath.vector4(0)
+local AMBIENT_LIGHT = vmath.vector4(0.3, 0.4, 0.4, 1.0)
+
+
+local function render_target(name, w, h, no_depth)
+    local already_rt = rt_list[name]
+    if already_rt and already_rt.w == w and already_rt.h == h then
+        -- nothing changed
+        return already_rt
+    elseif already_rt then
+        -- rt is already created, but size is changing. Fix it.
+        already_rt.w = w
+        already_rt.h = h
+        render.set_render_target_size(already_rt.rt, w, h)
+        -- pprint(already_rt)
+        return already_rt
+    end
+
+    --otherwise create a new RT 
+
+    local color_params = {
+        format     = graphics.TEXTURE_FORMAT_RGBA,
+        width      = w,
+        height     = h,
+        min_filter = graphics.TEXTURE_FILTER_LINEAR,
+        mag_filter = graphics.TEXTURE_FILTER_LINEAR,
+        u_wrap     = graphics.TEXTURE_WRAP_CLAMP_TO_EDGE,
+        v_wrap     = graphics.TEXTURE_WRAP_CLAMP_TO_EDGE }
+
+    local rt
+    if not no_depth then
+        local depth_params = {
+            flags         = render.TEXTURE_BIT, -- this will create the depth buffer as a texture
+            format        = graphics.TEXTURE_FORMAT_DEPTH,
+            width         = w,
+            height        = h,
+            u_wrap        = graphics.TEXTURE_WRAP_CLAMP_TO_EDGE,
+            v_wrap        = graphics.TEXTURE_WRAP_CLAMP_TO_EDGE }
+
+        rt = render.render_target(name, {[graphics.BUFFER_TYPE_COLOR0_BIT] = color_params, [graphics.BUFFER_TYPE_DEPTH_BIT] = depth_params })
+    else
+        rt = render.render_target(name, {[graphics.BUFFER_TYPE_COLOR0_BIT] = color_params })
+    end
+    local new_rt = {rt = rt, w = w, h = h}
+    rt_list[name] = new_rt
+    return new_rt
+end
+
+local function render_clear(color, depth, stencil)
+    if depth then
+        render.set_depth_mask(true)
+    end
+
+    if stencil then
+        render.set_stencil_mask(0xff)
+    end
+    render.clear({
+        [graphics.BUFFER_TYPE_COLOR0_BIT] = color,
+        [graphics.BUFFER_TYPE_DEPTH_BIT] = 1,
+        [graphics.BUFFER_TYPE_STENCIL_BIT] = 0
+    })
+end
+-------------------------------------------------
+
+function init(self)
+    self.predicates = create_predicates("tile", "gui", "particle", "model", "debug_text",
+    -- additional predicates:
+        "bgtile", "overtile", "quad", "light")
+
+    -- default is stretch projection. copy from builtins and change for different projection
+    -- or send a message to the render script to change projection:
+    -- msg.post("@render:", "use_stretch_projection", { near = -1, far = 1 })
+    -- msg.post("@render:", "use_fixed_projection", { near = -1, far = 1, zoom = 2 })
+    -- msg.post("@render:", "use_fixed_fit_projection", { near = -1, far = 1 })
+
+    local state = create_state()
+    self.state = state
+
+    local camera_world = create_camera(state, "camera_world", true)
+    init_camera(camera_world, get_stretch_projection)
+    local camera_gui = create_camera(state, "camera_gui")
+    init_camera(camera_gui, get_gui_projection)
+    -- Create a special camera that wraps camera components (if they exist)
+    -- It will take precedence over any other camera, and not change from messages
+    local camera_component = create_camera(state, "camera_component")
+    update_state(state)
+
+
+
+-------------------------------------------------
+    self.constants = render.constant_buffer()
+    -- creates 2 separate render targets for lights and for all other objects
+    local window_width = render.get_window_width()
+    local window_height = render.get_window_height()
+    self.normal_rt = render_target("normal_rt", window_width, window_height)
+    self.light_rt = render_target("light_rt", window_width, window_height, true)
+-------------------------------------------------
+
+end
+
+function update(self)
+
+-------------------------------------------------
+--  Fix render targets size if screen size has changed
+    local window_width = render.get_window_width()
+    local window_height = render.get_window_height()
+    render_target("normal_rt", window_width, window_height)
+    render_target("light_rt", window_width, window_height)
+-------------------------------------------------
+
+    local state = self.state
+    if not state.valid then
+        if not update_state(state) then
+            return
+        end
+    end
+
+    local predicates = self.predicates
+    -- clear screen buffers
+    --
+    -- turn on depth_mask before `render.clear()` to clear it as well
+    render.set_depth_mask(true)
+    render.set_stencil_mask(0xff)
+    render.clear(state.clear_buffers)
+
+    -- setup camera view and projection
+    --
+    local draw_options_world = set_camera_world(state)
+
+-------------------------------------------------
+draw_options_world.constants = self.constants -- add our constants to the default camera options
+draw_options_world.frustum_planes = render.FRUSTUM_PLANES_ALL
+-------------------------------------------------
+
+    render.set_viewport(0, 0, state.window_width, state.window_height)
+
+-------------------------------------------------
+--  First step:
+--  render world to render target
+    render.set_render_target(self.normal_rt.rt)
+    render_clear(BLACK)
+-------------------------------------------------
+
+    -- set states used for all the world predicates
+    render.set_blend_func(graphics.BLEND_FACTOR_SRC_ALPHA, graphics.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA)
+    render.enable_state(graphics.STATE_DEPTH_TEST)
+
+    -- render `model` predicate for default 3D material
+    --
+    render.enable_state(graphics.STATE_CULL_FACE)
+    render.draw(predicates.model, draw_options_world)
+    render.set_depth_mask(false)
+    render.disable_state(graphics.STATE_CULL_FACE)
+
+    -- render the other components: sprites, tilemaps, particles etc
+    --
+    render.enable_state(graphics.STATE_BLEND)
+    render.draw(predicates.bgtile, draw_options_world)
+    render.draw(predicates.tile, draw_options_world)
+    render.draw(predicates.particle, draw_options_world)
+    render.draw(predicates.overtile, draw_options_world)
+    render.disable_state(graphics.STATE_DEPTH_TEST)
+
+    render.draw_debug3d()
+
+
+-------------------------------------------------
+--  Second step:
+--  render lights to another render target
+    render.set_render_target(self.light_rt.rt)
+    render_clear(self.ambient or AMBIENT_LIGHT)
+
+    self.light_power = self.light_power or 1.5
+    self.light_gain = self.light_gain or 0.01
+    self.light_power = self.light_power + self.light_gain
+    if self.light_power > 2 then 
+        self.light_gain = -0.01
+    elseif self.light_power < 1.3 then
+        self.light_gain = 0.01
+    end
+    self.constants.time = vmath.vector4(self.light_power, 1, 1, 1)
+
+    render.draw(predicates.light, draw_options_world)
+--------------------------------------------------
+
+
+    -- Reset default camera
+    reset_camera_world(state)
+
+--------------------------------------------------
+--  Final step
+--  render MIX of ours render targets to DEFAULT target (screen buffer)
+    render.set_render_target(render.RENDER_TARGET_DEFAULT)
+    -- Default RT is already cleared above
+
+    render.set_view(IDENTITY_MATRIX)
+    render.set_projection(IDENTITY_MATRIX)
+
+    render.enable_texture(0, self.normal_rt.rt, graphics.BUFFER_TYPE_COLOR0_BIT)
+    render.enable_texture(1, self.light_rt.rt, graphics.BUFFER_TYPE_COLOR0_BIT)
+    render.draw(predicates.quad, draw_options_world)
+    render.disable_texture(0)
+    render.disable_texture(1)
+--------------------------------------------------
+
+
+
+    -- render GUI
+    --
+    local camera_gui = state.cameras.camera_gui
+    render.set_view(camera_gui.view)
+    render.set_projection(camera_gui.proj)
+
+    render.enable_state(graphics.STATE_STENCIL_TEST)
+    render.draw(predicates.gui, camera_gui.options)
+    render.draw(predicates.debug_text, camera_gui.options)
+    render.disable_state(graphics.STATE_STENCIL_TEST)
+    render.disable_state(graphics.STATE_BLEND)
+end
+
+--------------------------------------------------
+-- 
+local ambients = {
+    vmath.vector4(0.05, 0.05, 0.6, 1.0),
+    vmath.vector4(0.1, 0.1, 0.65, 1.0),
+    vmath.vector4(0.2, 0.2, 0.6, 1.0),
+    vmath.vector4(0.2, 0.3, 0.5, 1.0),
+    vmath.vector4(0.3, 0.4, 0.4, 1.0),
+    vmath.vector4(0.4, 0.4, 0.4, 1.0),
+    vmath.vector4(0.5, 0.4, 0.4, 1.0),
+    vmath.vector4(0.6, 0.5, 0.4, 1.0),
+    vmath.vector4(0.6, 0.6, 0.5, 1.0),
+    vmath.vector4(0.7, 0.7, 0.6, 1.0),
+    vmath.vector4(0.8, 0.8, 0.7, 1.0),
+    vmath.vector4(0.9, 0.9, 0.8, 1.0),
+    vmath.vector4(1, 1, 0.9, 1.0),
+    vmath.vector4(1, 1, 1, 1.0),
+}
+local AMBIENT = hash("ambient")
+--------------------------------------------------
+
+function on_message(self, message_id, message)
+    local state = self.state
+    local camera = state.main_camera
+
+    if message_id == MSG_CLEAR_COLOR then
+        update_clear_color(state, message.color)
+    elseif message_id == MSG_WINDOW_RESIZED then
+        update_state(state)
+    elseif message_id == MSG_SET_VIEW_PROJ then
+        camera.view = message.view
+        self.camera_projection = message.projection or vmath.matrix4()
+        update_camera(camera, state)
+    elseif message_id == MSG_SET_CAMERA_PROJ then
+        camera.projection_fn = function() return self.camera_projection end
+    elseif message_id == MSG_USE_STRETCH_PROJ then
+        init_camera(camera, get_stretch_projection, message.near, message.far)
+        update_camera(camera, state)
+    elseif message_id == MSG_USE_FIXED_PROJ then
+        init_camera(camera, get_fixed_projection, message.near, message.far, message.zoom)
+        update_camera(camera, state)
+    elseif message_id == MSG_USE_FIXED_FIT_PROJ then
+        init_camera(camera, get_fixed_fit_projection, message.near, message.far)
+        update_camera(camera, state)
+    elseif message_id == AMBIENT then -- change ambient color
+        self.ambient_num = self.ambient_num or 0
+        self.ambient_num = self.ambient_num + 1
+        if self.ambient_num > #ambients then self.ambient_num = 1 end
+
+        self.ambient =  ambients [self.ambient_num]
+    end
+end

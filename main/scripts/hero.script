@@ -7,7 +7,6 @@
 -- Hero controller
 -- Gamepad and Keys Binding
 
-local cam = require "rendercam.rendercam"
 local param = require "main.param"
 local scene = require "main.scene"
 local broadcast = require "ludobits.m.broadcast"
@@ -67,13 +66,15 @@ function init(self)
 	mapper.bind(triggers.KEY_RIGHT, param.RIGHT, self.hero_id)
 	mapper.bind(triggers.KEY_UP, param.UP, self.hero_id)
 	mapper.bind(triggers.KEY_DOWN, param.DOWN, self.hero_id)
-	--mapper.bind(triggers.KEY_A, param.LEFT, self.hero_id)
-	--mapper.bind(triggers.KEY_D, param.RIGHT, self.hero_id)
-	--mapper.bind(triggers.KEY_W, param.UP, self.hero_id)
-	--mapper.bind(triggers.KEY_S, param.DOWN, self.hero_id)
+	mapper.bind(triggers.KEY_A, param.LEFT, self.hero_id)
+	mapper.bind(triggers.KEY_D, param.RIGHT, self.hero_id)
+	mapper.bind(triggers.KEY_W, param.UP, self.hero_id)
+	mapper.bind(triggers.KEY_S, param.DOWN, self.hero_id)
 	mapper.bind(triggers.KEY_C, param.DODGE, self.hero_id)
+	mapper.bind(triggers.KEY_LSHIFT, param.DODGE, self.hero_id)
 	--mapper.bind(triggers.KEY_V, param.DASH, self.hero_id)
 	mapper.bind(triggers.KEY_X, param.SLASH, self.hero_id)
+	mapper.bind(triggers.KEY_SPACE, param.SLASH, self.hero_id)
 	mapper.bind(triggers.KEY_B, param.B, self.hero_id)
 	mapper.bind(triggers.GAMEPAD_LPAD_LEFT, param.LEFT, self.hero_id)
 	mapper.bind(triggers.GAMEPAD_LPAD_RIGHT, param.RIGHT, self.hero_id)
@@ -90,7 +91,6 @@ function init(self)
 
 	broadcast.register(param.LEVELLOADED)
 	broadcast.register(param.GOTO)
-	cam.follow(go.get_id())
 
 	msg.post(param.virtual_gamepad_url, "register")
 end
@@ -98,7 +98,6 @@ end
 function final(self)
 	broadcast.unregister(param.LEVELLOADED)
 	broadcast.unregister(param.GOTO)
-	cam.unfollow(go.get_id())
 	msg.post(param.virtual_gamepad_url, "unregister")
 end
 
@@ -211,12 +210,12 @@ local function on_damage_event(self, message)
 	if self.monsters_around[message.id] then
 		self.special = true
 		change_state(self, HIT)
-		cam.shake(10, 0.2)
+		self.shake = .2
 
 	elseif message.type == rpg.MAGIC then
 		self.special = true
 		change_state(self, HIT)
-		cam.shake(10, 0.2)
+		self.shake = .2
 
 	end
 
@@ -571,7 +570,7 @@ function on_input(self, action_id, action)
 	elseif action_id == triggers.KEY_O and action.released then 
 		msg.post('@system:', 'toggle_physics_debug')
 	
-	elseif action_id == triggers.KEY_A and action.released then 
+	elseif action_id == triggers.KEY_ENTER and action.released then 
 		msg.post('@render:', 'ambient')
 
 	elseif mapped_action_id == param.B and action.released then
@@ -579,5 +578,29 @@ function on_input(self, action_id, action)
 		press_b(self)
 
 	end
+
+end
+
+-- 
+function late_update(self, dt)
+	-- Follow the camera to the hero position
+	local position = go.get_position()
+
+	-- ZOOM camera for portrait display
+	local def = 1600/900 -- project display size
+	local x, y = window.get_size() -- actual window size
+	local coef = def / (x/y)
+	position.z = 1200 + math.max(coef-1, 0) * 400
+	-- print(position.z)
+
+	-- Shake the camera 
+	if self.shake and self.shake > 0 then
+		self.shake = self.shake - dt
+		position.z = position.z + 20*math.sin(math.random())
+	end
+
+	go.animate("/cam", "position.x",  go.PLAYBACK_ONCE_FORWARD, position.x, go.EASING_OUTCUBIC, .2)
+	go.animate("/cam", "position.y",  go.PLAYBACK_ONCE_FORWARD, position.y, go.EASING_OUTCUBIC, .15)
+	go.animate("/cam", "position.z",  go.PLAYBACK_ONCE_FORWARD, position.z, go.EASING_OUTCUBIC, .05)
 
 end
