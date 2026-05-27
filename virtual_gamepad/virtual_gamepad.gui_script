@@ -24,8 +24,8 @@ local function register_button(node_or_node_id, message_id)
 end
 
 local function shake(node, initial_scale)
-	gui.cancel_animation(node, "scale.x")
-	gui.cancel_animation(node, "scale.y")
+	gui.cancel_animations(node, "scale.x")
+	gui.cancel_animations(node, "scale.y")
 	gui.set_scale(node, initial_scale)
 	local scale = gui.get_scale(node)
 	gui.set_scale(node, scale * 1.2)
@@ -91,7 +91,7 @@ local function handle_touch(self, touch, touch_index)
 			end
 		end
 		if gui.pick_node(self.analog, touch.x, touch.y) then
-			gui.cancel_animation(self.analog, gui.PROP_POSITION)
+			gui.cancel_animations(self.analog, gui.PROP_POSITION)
 			local touch_pos = vmath.vector3(touch.x, touch.y, 0)
 			self.analog_pressed = {
 				pos = touch_pos,
